@@ -9,7 +9,7 @@
 @property id<Plugin> plugin;
 //
 @property NSString *bannerAdUnit;
-@property NSString *fullScreenAdUnit;
+@property NSString *interstitialAdUnit;
 @property BOOL isOverlap;
 @property BOOL isTest;
 //

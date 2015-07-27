@@ -1,9 +1,9 @@
 ﻿
 module.exports = {
 	_loadedBannerAd: false,
-	_loadedFullScreenAd: false,
+	_loadedInterstitialAd: false,
 	_isShowingBannerAd: false,
-	_isShowingFullScreenAd: false,
+	_isShowingInterstitialAd: false,
 	//
 	setLicenseKey: function(successCallback, errorCallback, args) {
 	    var email = args[0];
@@ -11,11 +11,11 @@ module.exports = {
 		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.setLicenseKey(email, licenseKey);		        
     },
 	setUp: function(successCallback, errorCallback, args) {
-		var adUnit = args[0];
-		var fullScreenAdUnit = args[1];
+		var bannerAdUnit = args[0];
+		var interstitialAdUnit = args[1];
 		var isOverlap = args[2];
 		var isTest = args[3];
-		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.setUp(adUnit, fullScreenAdUnit, isOverlap, isTest);
+		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
 /*
 		if (typeof result == "string") {
 			if (result == "onBannerAdPreloaded") {					
@@ -42,28 +42,28 @@ module.exports = {
 					self.onBannerAdHidden();
 			}
 			//
-			else if (result == "onFullScreenAdPreloaded") {
-				if (self.onFullScreenAdPreloaded)
-					self.onFullScreenAdPreloaded();
+			else if (result == "onInterstitialAdPreloaded") {
+				if (self.onInterstitialAdPreloaded)
+					self.onInterstitialAdPreloaded();
 			}
-			else if (result == "onFullScreenAdLoaded") {
-				self._loadedFullScreenAd = true;
+			else if (result == "onInterstitialAdLoaded") {
+				self._loadedInterstitialAd = true;
 				
-				if (self.onFullScreenAdLoaded)
-					self.onFullScreenAdLoaded();
+				if (self.onInterstitialAdLoaded)
+					self.onInterstitialAdLoaded();
 			}
-			else if (result == "onFullScreenAdShown") {
-				self._loadedFullScreenAd = false;					
-				self._isShowingFullScreenAd = true;
+			else if (result == "onInterstitialAdShown") {
+				self._loadedInterstitialAd = false;					
+				self._isShowingInterstitialAd = true;
 
-				if (self.onFullScreenAdShown)
-					self.onFullScreenAdShown();
+				if (self.onInterstitialAdShown)
+					self.onInterstitialAdShown();
 			}
-			else if (result == "onFullScreenAdHidden") {
-				self._isShowingFullScreenAd = false;
+			else if (result == "onInterstitialAdHidden") {
+				self._isShowingInterstitialAd = false;
 				
-				if (self.onFullScreenAdHidden)
-					self.onFullScreenAdHidden();
+				if (self.onInterstitialAdHidden)
+					self.onInterstitialAdHidden();
 			}
 		}
 		else {
@@ -90,24 +90,24 @@ module.exports = {
 		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.hideBannerAd();
     },
 	//
-	preloadFullScreenAd: function(successCallback, errorCallback, args) {
-		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.preloadFullScreenAd();
+	preloadInterstitialAd: function(successCallback, errorCallback, args) {
+		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.preloadInterstitialAd();
     },
-    showFullScreenAd: function(successCallback, errorCallback, args) {
-		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.showFullScreenAd(); 
+    showInterstitialAd: function(successCallback, errorCallback, args) {
+		Com.Cranberrygame.Cordova.Plugin.Ad.AdMob.AdMobPlugin.showInterstitialAd(); 
     },
 /*	
 	loadedBannerAd: function() {
 		return this._loadedBannerAd;
 	},
-	loadedFullScreenAd: function() {
-		return this._loadedFullScreenAd;
+	loadedInterstitialAd: function() {
+		return this._loadedInterstitialAd;
 	},	
 	isShowingBannerAd: function() {
 		return this._isShowingBannerAd;
 	},
-	isShowingFullScreenAd: function() {
-		return this._isShowingFullScreenAd;
+	isShowingInterstitialAd: function() {
+		return this._isShowingInterstitialAd;
 	},	
 */	
 	onBannerAdPreloaded: null,
@@ -115,10 +115,10 @@ module.exports = {
 	onBannerAdShown: null,
 	onBannerAdHidden: null,	
 	//
-	onFullScreenAdPreloaded: null,
-	onFullScreenAdLoaded: null,
-	onFullScreenAdShown: null,
-	onFullScreenAdHidden: null	
+	onInterstitialAdPreloaded: null,
+	onInterstitialAdLoaded: null,
+	onInterstitialAdShown: null,
+	onInterstitialAdHidden: null	
 };
 
 //require("cordova/exec/proxy").add("AdMobPlugin", module.exports);

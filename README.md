@@ -79,6 +79,8 @@ You can see Plugins For Cordova in one page: http://cranberrygame.github.io?refe
 		Supports wp8 split mode
 1.0.95
 	Fixed wp8 build error
+1.0.96
+	Changed name "full screen" to "interstitial"
 	
 To-Do:
 
@@ -223,7 +225,7 @@ Cordova AdmobPhunware construct2 plugin<br>
 # Server setting #
 ```c
 ```
-## bannerAdUnit, fullScreenAdUnit ##
+## bannerAdUnit, interstitialAdUnit ##
 <img src="https://raw.githubusercontent.com/cranberrygame/cordova-plugin-ad-admob/master/doc/ad_unit1.png"><br>
 <img src="https://raw.githubusercontent.com/cranberrygame/cordova-plugin-ad-admob/master/doc/ad_unit2.png"><br>
 <img src="https://raw.githubusercontent.com/cranberrygame/cordova-plugin-ad-admob/master/doc/ad_unit3.png"><br>
@@ -251,28 +253,28 @@ The step to use admob mediation networks is following:<br>
 # API #
 ```javascript
 var bannerAdUnit = "REPLACE_THIS_WITH_YOUR_BANNER_AD_UNIT";
-var fullScreenAdUnit = "REPLACE_THIS_WITH_YOUR_FULL_SCREEN_AD_UNIT";
+var interstitialAdUnit = "REPLACE_THIS_WITH_YOUR_INTERSTITIAL_AD_UNIT";
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 /*
 var bannerAdUnit;
-var fullScreenAdUnit;
+var interstitialAdUnit;
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 //android
 if (navigator.userAgent.match(/Android/i)) {
 	bannerAdUnit = "REPLACE_THIS_WITH_YOUR_BANNER_AD_UNIT";
-	fullScreenAdUnit = "REPLACE_THIS_WITH_YOUR_FULL_SCREEN_AD_UNIT";
+	interstitialAdUnit = "REPLACE_THIS_WITH_YOUR_INTERSTITIAL_AD_UNIT";
 }
 //ios
 else if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
     bannerAdUnit = "REPLACE_THIS_WITH_YOUR_BANNER_AD_UNIT";
-    fullScreenAdUnit = "REPLACE_THIS_WITH_YOUR_FULL_SCREEN_AD_UNIT";
+    interstitialAdUnit = "REPLACE_THIS_WITH_YOUR_INTERSTITIAL_AD_UNIT";
 }
 //wp8
 else if( navigator.userAgent.match(/Windows Phone/i) ) {
     bannerAdUnit = "REPLACE_THIS_WITH_YOUR_BANNER_AD_UNIT";
-    fullScreenAdUnit = "REPLACE_THIS_WITH_YOUR_FULL_SCREEN_AD_UNIT";
+    interstitialAdUnit = "REPLACE_THIS_WITH_YOUR_INTERSTITIAL_AD_UNIT";
 }
 */
 
@@ -281,7 +283,7 @@ document.addEventListener("deviceready", function(){
     //you can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova
     //window.admob.setLicenseKey("yourEmailId@yourEmaildDamin.com", "yourFreeLicenseKey");
 
-    window.admob.setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+    window.admob.setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
 
     //
     window.admob.onBannerAdPreloaded = function() {
@@ -297,17 +299,17 @@ document.addEventListener("deviceready", function(){
         alert('onBannerAdHidden');
     };	
     //
-    window.admob.onFullScreenAdPreloaded = function() {
-        alert('onFullScreenAdPreloaded');
+    window.admob.onInterstitialAdPreloaded = function() {
+        alert('onInterstitialAdPreloaded');
     };
-    window.admob.onFullScreenAdLoaded = function() {
-        alert('onFullScreenAdLoaded');
+    window.admob.onInterstitialAdLoaded = function() {
+        alert('onInterstitialAdLoaded');
     };
-    window.admob.onFullScreenAdShown = function() {
-        alert('onFullScreenAdShown');
+    window.admob.onInterstitialAdShown = function() {
+        alert('onInterstitialAdShown');
     };
-    window.admob.onFullScreenAdHidden = function() {
-        alert('onFullScreenAdHidden');
+    window.admob.onInterstitialAdHidden = function() {
+        alert('onInterstitialAdHidden');
     };
 }, false);
 	
@@ -327,14 +329,14 @@ window.admob.showBannerAd('bottom-center', 'SMART_BANNER');
 window.admob.reloadBannerAd();
 window.admob.hideBannerAd();
 
-window.admob.preloadFullScreenAd();//option, download ad previously for fast show
-window.admob.showFullScreenAd();
+window.admob.preloadInterstitialAd();//option, download ad previously for fast show
+window.admob.showInterstitialAd();
 
 alert(window.admob.loadedBannerAd());//boolean: true or false
-alert(window.admob.loadedFullScreenAd());//boolean: true or false
+alert(window.admob.loadedInterstitialAd());//boolean: true or false
 
 alert(window.admob.isShowingBannerAd());//boolean: true or false
-alert(window.admob.isShowingFullScreenAd());//boolean: true or false
+alert(window.admob.isShowingInterstitialAd());//boolean: true or false
 ```
 # Examples #
 <a href="https://github.com/cranberrygame/cordova-plugin-ad-admob/blob/master/example/basic/index.html">example/basic/index.html</a><br>

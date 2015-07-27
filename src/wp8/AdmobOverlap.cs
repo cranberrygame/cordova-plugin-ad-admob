@@ -22,7 +22,7 @@ namespace Test {
 		protected Plugin plugin;	
 		//
         protected string bannerAdUnit;
-        protected string fullScreenAdUnit;
+        protected string interstitialAdUnit;
         protected bool isOverlap;
         protected bool isTest;
 		//
@@ -44,10 +44,10 @@ namespace Test {
         public void _setLicenseKey(string email, string licenseKey) {
         }
 
-        public void _setUp(string bannerAdUnit, string fullScreenAdUnit, bool isOverlap, bool isTest)
+        public void _setUp(string bannerAdUnit, string interstitialAdUnit, bool isOverlap, bool isTest)
         {
 			this.bannerAdUnit = bannerAdUnit;
-			this.fullScreenAdUnit = fullScreenAdUnit;
+			this.interstitialAdUnit = interstitialAdUnit;
 			this.isOverlap = isOverlap;
 			this.isTest = isTest;
         }
@@ -316,20 +316,20 @@ namespace com.cranberrygame.adrotatortest
             }
         }
 
-        public void _preloadFullScreenAd()
+        public void _preloadInterstitialAd()
         {
 			fullScreenAdPreload = true;			
 						
-			loadFullScreenAd();
+			loadinterstitialAd();
         }
 		
-		protected void loadFullScreenAd() 
+		protected void loadinterstitialAd() 
 		{
             //if (interstitialView == null) //need to comment on wp8
 			//{
                 //interstitialView = new InterstitialAd("ca-app-pub-4906074177432504/4879304879");//x cf) wp8
                 //interstitialView = new InterstitialAd("ca-app-pub-4906074177432504/5150650074");//o cf) android
-                interstitialView = new InterstitialAd(this.fullScreenAdUnit);
+                interstitialView = new InterstitialAd(this.interstitialAdUnit);
 				//http://forums.xamarin.com/discussion/849/binding-library-for-inneractive-sdk
                 interstitialView.ReceivedAd += interstitialView_ReceivedAd;
                 interstitialView.FailedToReceiveAd += interstitialView_FailedToReceiveAd;
@@ -345,7 +345,7 @@ namespace com.cranberrygame.adrotatortest
 			interstitialView.LoadAd(adRequest);
 		}
 
-        public void _showFullScreenAd()
+        public void _showInterstitialAd()
         {
 			if (fullScreenAdPreload) 
 			{
@@ -363,7 +363,7 @@ namespace com.cranberrygame.adrotatortest
 			}
 			else 
 			{
-				loadFullScreenAd();
+				loadinterstitialAd();
 			}
         }
 		
@@ -417,15 +417,15 @@ namespace com.cranberrygame.adrotatortest
             PluginResult pr;
 			if (fullScreenAdPreload) 
 			{
-				pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdPreloaded");
+				pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdPreloaded");
 				pr.KeepCallback = true;
                 plugin.DispatchCommandResult(pr);
 				//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
 				//pr.KeepCallback = true;
 				//plugin.DispatchCommandResult(pr);
 			}
-			
-			pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdLoaded");
+
+            pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdLoaded");
 			pr.KeepCallback = true;
 			plugin.DispatchCommandResult(pr);
 			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -446,8 +446,8 @@ namespace com.cranberrygame.adrotatortest
         protected void interstitialView_ShowingOverlay(object sender, AdEventArgs e) 
 		{
             Debug.WriteLine("OnInterstitialViewPresentScreen");
-			
-			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdShown");
+
+            PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
 			pr.KeepCallback = true;
             plugin.DispatchCommandResult(pr);
 			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -457,9 +457,9 @@ namespace com.cranberrygame.adrotatortest
 		
         protected void interstitialView_DismissingOverlay(object sender, AdEventArgs e) 
 		{
-            Debug.WriteLine("interstitialView_DismissingOverlay");	
-			
-			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdHidden");
+            Debug.WriteLine("interstitialView_DismissingOverlay");
+
+            PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
 			pr.KeepCallback = true;
             plugin.DispatchCommandResult(pr);
 			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);

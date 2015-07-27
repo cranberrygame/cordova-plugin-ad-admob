@@ -39,13 +39,13 @@ interface Plugin {
 
 interface PluginDelegate {
 	public void _setLicenseKey(String email, String licenseKey);
-	public void _setUp(String bannerAdUnit, String fullScreenAdUnit, boolean isOverlap, boolean isTest);
+	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest);
 	public void _preloadBannerAd();
 	public void _showBannerAd(String position, String size);
 	public void _reloadBannerAd();
 	public void _hideBannerAd();
-	public void _preloadFullScreenAd();
-	public void _showFullScreenAd();
+	public void _preloadInterstitialAd();
+	public void _showInterstitialAd();
     public void onPause(boolean multitasking);
     public void onResume(boolean multitasking);
     public void onDestroy();
@@ -138,13 +138,13 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 			
 			return true;
 		}
-		else if (action.equals("preloadFullScreenAd")) {
-			preloadFullScreenAd(action, args, callbackContext);
+		else if (action.equals("preloadInterstitialAd")) {
+			preloadInterstitialAd(action, args, callbackContext);
 			
 			return true;
 		}
-		else if (action.equals("showFullScreenAd")) {
-			showFullScreenAd(action, args, callbackContext);
+		else if (action.equals("showInterstitialAd")) {
+			showInterstitialAd(action, args, callbackContext);
 						
 			return true;
 		}
@@ -178,10 +178,10 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		//args.getBoolean(1)
 		//JSONObject json = args.optJSONObject(0);
 		//json.optString("bannerAdUnit")
-		//json.optString("fullScreenAdUnit")
+		//json.optString("interstitialAdUnit")
 		//JSONObject inJson = json.optJSONObject("inJson");
 		//final String bannerAdUnit = args.getString(0);
-		//final String fullScreenAdUnit = args.getString(1);				
+		//final String interstitialAdUnit = args.getString(1);				
 		//final boolean isOverlap = args.getBoolean(2);				
 		//final boolean isTest = args.getBoolean(3);
 		//final String[] zoneIds = new String[args.getJSONArray(4).length()];
@@ -189,15 +189,15 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		//	zoneIds[i] = args.getJSONArray(4).getString(i);
 		//}			
 		//Log.d(LOG_TAG, String.format("%s", bannerAdUnit));			
-		//Log.d(LOG_TAG, String.format("%s", fullScreenAdUnit));
+		//Log.d(LOG_TAG, String.format("%s", interstitialAdUnit));
 		//Log.d(LOG_TAG, String.format("%b", isOverlap));
 		//Log.d(LOG_TAG, String.format("%b", isTest));		
 		final String bannerAdUnit = args.getString(0);
-		final String fullScreenAdUnit = args.getString(1);				
+		final String interstitialAdUnit = args.getString(1);				
 		final boolean isOverlap = args.getBoolean(2);				
 		final boolean isTest = args.getBoolean(3);				
 		Log.d(LOG_TAG, String.format("%s", bannerAdUnit));			
-		Log.d(LOG_TAG, String.format("%s", fullScreenAdUnit));
+		Log.d(LOG_TAG, String.format("%s", interstitialAdUnit));
 		Log.d(LOG_TAG, String.format("%b", isOverlap));
 		Log.d(LOG_TAG, String.format("%b", isTest));
 		
@@ -211,7 +211,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		cordova.getActivity().runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
-				_setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+				_setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
 			}
 		});
 	}
@@ -257,20 +257,20 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		});
 	}
 
-	private void preloadFullScreenAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	private void preloadInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		cordova.getActivity().runOnUiThread(new Runnable(){
 			@Override
 			public void run() {
-				_preloadFullScreenAd();
+				_preloadInterstitialAd();
 			}
 		});
 	}
 
-	private void showFullScreenAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+	private void showInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 		cordova.getActivity().runOnUiThread(new Runnable(){
 			@Override
 			public void run() {
-				_showFullScreenAd();
+				_showInterstitialAd();
 			}
 		});
 	}
@@ -326,15 +326,15 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		//	Util.alert(plugin.getCordova().getActivity(),"Cordova Admob: invalid email / license key. You can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova");			
 	}
 	
-	public void _setUp(String bannerAdUnit, String fullScreenAdUnit, boolean isOverlap, boolean isTest) {
+	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest) {
 		if (!validLicenseKey) {
 			if (new Random().nextInt(100) <= 1) {//0~99					
 				bannerAdUnit = TEST_BANNER_AD_UNIT;
-				fullScreenAdUnit = TEST_FULL_SCREEN_AD_UNIT;
+				interstitialAdUnit = TEST_FULL_SCREEN_AD_UNIT;
 			}
 		}
 			
-		pluginDelegate._setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+		pluginDelegate._setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
 	}
 	
 	public void _preloadBannerAd() {
@@ -353,12 +353,12 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		pluginDelegate._hideBannerAd();
 	}
 		
-	public void _preloadFullScreenAd() {
-		pluginDelegate._preloadFullScreenAd();
+	public void _preloadInterstitialAd() {
+		pluginDelegate._preloadInterstitialAd();
 	}
 	
-	public void _showFullScreenAd() {
-		pluginDelegate._showFullScreenAd();
+	public void _showInterstitialAd() {
+		pluginDelegate._showInterstitialAd();
 	}
 
 	//cranberrygame end: AdmobPluginDelegate

@@ -32,13 +32,13 @@ public interface Plugin
 public interface PluginDelegate
 {
     void _setLicenseKey(String email, String licenseKey);
-    void _setUp(String bannerAdUnit, String fullScreenAdUnit, bool isOverlap, bool isTest);
+    void _setUp(String bannerAdUnit, String interstitialAdUnit, bool isOverlap, bool isTest);
     void _preloadBannerAd();
     void _showBannerAd(String position, String size);
     void _reloadBannerAd();
     void _hideBannerAd();
-    void _preloadFullScreenAd();
-    void _showFullScreenAd();
+    void _preloadInterstitialAd();
+    void _showInterstitialAd();
 }
 
 namespace Cranberrygame
@@ -74,7 +74,7 @@ namespace Cordova.Extension.Commands
         protected string licenseKey;
         protected bool validLicenseKey;
         protected string TEST_BANNER_AD_UNIT = "ca-app-pub-4906074177432504/5891944075";
-        protected string TEST_FULL_SCREEN_AD_UNIT = "ca-app-pub-4906074177432504/1322143678";
+        protected string TEST_INTERSTITIAL_AD_UNIT = "ca-app-pub-4906074177432504/1322143678";
 	
 		public void setLicenseKey(string args) 
 		{
@@ -92,19 +92,19 @@ namespace Cordova.Extension.Commands
 		public void setUp(string args) 
 		{
             //string bannerAdUnit = JsonHelper.Deserialize<string[]>(args)[0];
-            //string fullScreenAdUnit = JsonHelper.Deserialize<string[]>(args)[1];
+            //string interstitialAdUnit = JsonHelper.Deserialize<string[]>(args)[1];
             //bool isOverlap = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[2]);
             //bool isTest = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[3]);
             //Debug.WriteLine("bannerAdUnit: " + bannerAdUnit);
-            //Debug.WriteLine("fullScreenAdUnit: " + fullScreenAdUnit);
+            //Debug.WriteLine("interstitialAdUnit: " + interstitialAdUnit);
             //Debug.WriteLine("isOverlap: " + isOverlap);
             //Debug.WriteLine("isTest: " + isTest);			
             string bannerAdUnit = JsonHelper.Deserialize<string[]>(args)[0];
-            string fullScreenAdUnit = JsonHelper.Deserialize<string[]>(args)[1];
+            string interstitialAdUnit = JsonHelper.Deserialize<string[]>(args)[1];
             bool isOverlap = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[2]);
             bool isTest = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[3]);
             Debug.WriteLine("bannerAdUnit: " + bannerAdUnit);
-            Debug.WriteLine("fullScreenAdUnit: " + fullScreenAdUnit);
+            Debug.WriteLine("interstitialAdUnit: " + interstitialAdUnit);
             Debug.WriteLine("isOverlap: " + isOverlap);
             Debug.WriteLine("isTest: " + isTest);
 
@@ -121,7 +121,7 @@ namespace Cordova.Extension.Commands
 
             Deployment.Current.Dispatcher.BeginInvoke(() => 
 			{   
-                _setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+                _setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
             });					
         }
 		
@@ -159,17 +159,17 @@ namespace Cordova.Extension.Commands
             });	
         }
 		
-        public void preloadFullScreenAd(string args) {
+        public void preloadInterstitialAd(string args) {
             Deployment.Current.Dispatcher.BeginInvoke(() => 
 			{
-                _preloadFullScreenAd();
+                _preloadInterstitialAd();
             });
         }
 		
-        public void showFullScreenAd(string args) {
+        public void showInterstitialAd(string args) {
            Deployment.Current.Dispatcher.BeginInvoke(() => 
 		   {
-                _showFullScreenAd();
+                _showInterstitialAd();
            });		
         }
 	
@@ -212,18 +212,18 @@ namespace Cordova.Extension.Commands
 			//	Cranberrygame.Util.alert("Cordova Admob: invalid email / license key. You can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova");			
 		}
 
-        private void _setUp(string bannerAdUnit, string fullScreenAdUnit, bool isOverlap, bool isTest) {
+        private void _setUp(string bannerAdUnit, string interstitialAdUnit, bool isOverlap, bool isTest) {
 
 			if (!validLicenseKey) 
 			{
 				if (new Random().Next(100) <= 1) //0~99	
 				{				
 					bannerAdUnit = TEST_BANNER_AD_UNIT;
-					fullScreenAdUnit = TEST_FULL_SCREEN_AD_UNIT;
+					interstitialAdUnit = TEST_INTERSTITIAL_AD_UNIT;
 				}
 			}
 
-			pluginDelegate._setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+			pluginDelegate._setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
         }
 		
         private void _preloadBannerAd() 
@@ -246,14 +246,14 @@ namespace Cordova.Extension.Commands
             pluginDelegate._hideBannerAd();
         }
  	
-        private void _preloadFullScreenAd() 
+        private void _preloadInterstitialAd() 
 		{
-			pluginDelegate._preloadFullScreenAd();
+			pluginDelegate._preloadInterstitialAd();
         }
 				
-        private void _showFullScreenAd() 
+        private void _showInterstitialAd() 
 		{
-			pluginDelegate._showFullScreenAd();
+			pluginDelegate._showInterstitialAd();
         }
 
 		//cranberrygame end: AdmobPluginDelegate

@@ -7,28 +7,28 @@
 <script>
 
 var bannerAdUnit = "ca-app-pub-4906074177432504/9172302471";
-var fullScreenAdUnit = "ca-app-pub-4906074177432504/1649035673";
+var interstitialAdUnit = "ca-app-pub-4906074177432504/1649035673";
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 /*
 var bannerAdUnit;
-var fullScreenAdUnit;
+var interstitialAdUnit;
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 //android
 if (navigator.userAgent.match(/Android/i)) {
 	bannerAdUnit = "ca-app-pub-4906074177432504/9172302471";
-	fullScreenAdUnit = "ca-app-pub-4906074177432504/1649035673";
+	interstitialAdUnit = "ca-app-pub-4906074177432504/1649035673";
 }
 //ios
 else if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
 	bannerAdUnit = "ca-app-pub-4906074177432504/4602502071";
-	fullScreenAdUnit = "ca-app-pub-4906074177432504/7555968477";
+	interstitialAdUnit = "ca-app-pub-4906074177432504/7555968477";
 }
 //wp8
 else if( navigator.userAgent.match(/Windows Phone/i) ) {
 	bannerAdUnit = "ca-app-pub-4906074177432504/4462901274";
-	fullScreenAdUnit = "ca-app-pub-4906074177432504/5939634477";
+	interstitialAdUnit = "ca-app-pub-4906074177432504/5939634477";
 }
 */
 
@@ -45,7 +45,7 @@ document.addEventListener("deviceready", function(){
 
 function setUpPlugin() {
 
-	window.admob.setUp(bannerAdUnit, fullScreenAdUnit, isOverlap, isTest);
+	window.admob.setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
 
 	//
 	window.admob.onBannerAdPreloaded = function() {
@@ -61,17 +61,17 @@ function setUpPlugin() {
 		alert('onBannerAdHidden');
 	};	
 	//
-	window.admob.onFullScreenAdPreloaded = function() {
-		alert('onFullScreenAdPreloaded');
+	window.admob.onInterstitialAdPreloaded = function() {
+		alert('onInterstitialAdPreloaded');
 	};
-	window.admob.onFullScreenAdLoaded = function() {
-		alert('onFullScreenAdLoaded');
+	window.admob.onInterstitialAdLoaded = function() {
+		alert('onInterstitialAdLoaded');
 	};
-	window.admob.onFullScreenAdShown = function() {
-		alert('onFullScreenAdShown');
+	window.admob.onInterstitialAdShown = function() {
+		alert('onInterstitialAdShown');
 	};
-	window.admob.onFullScreenAdHidden = function() {
-		alert('onFullScreenAdHidden');
+	window.admob.onInterstitialAdHidden = function() {
+		alert('onInterstitialAdHidden');
 	};
 }
 	
@@ -93,14 +93,14 @@ size: 	'BANNER' (320x50, Phones and Tablets)
 <p><button onclick="window.admob.reloadBannerAd();">reloadBannerAd</button></p>
 <p><button onclick="window.admob.hideBannerAd();">hideBannerAd</button></p>
 <br>
-<p><button onclick="window.admob.preloadFullScreenAd();">preloadFullScreenAd</button></p>
-<p><button onclick="window.admob.showFullScreenAd();">showFullScreenAd</button></p>
+<p><button onclick="window.admob.preloadInterstitialAd();">preloadInterstitialAd</button></p>
+<p><button onclick="window.admob.showInterstitialAd();">showInterstitialAd</button></p>
 <br>
 <p><button onclick="alert(window.admob.loadedBannerAd());">loadedBannerAd</button></p>
-<p><button onclick="alert(window.admob.loadedFullScreenAd());">loadedFullScreenAd</button></p>
+<p><button onclick="alert(window.admob.loadedInterstitialAd());">loadedInterstitialAd</button></p>
 <br>
 <p><button onclick="alert(window.admob.isShowingBannerAd());">isShowingBannerAd</button></p>
-<p><button onclick="alert(window.admob.isShowingFullScreenAd());">isShowingFullScreenAd</button></p>
+<p><button onclick="alert(window.admob.isShowingInterstitialAd());">isShowingInterstitialAd</button></p>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 @synthesize plugin;
 //
 @synthesize bannerAdUnit;
-@synthesize fullScreenAdUnit;
+@synthesize interstitialAdUnit;
 @synthesize isOverlap;
 @synthesize isTest;
 //
@@ -73,9 +73,9 @@
 - (void) _setLicenseKey:(NSString *)email aLicenseKey:(NSString *)licenseKey {
 }
 
-- (void) _setUp:(NSString *)bannerAdUnit anAdUnitFullScreen:(NSString *)fullScreenAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	self.bannerAdUnit = bannerAdUnit;
-	self.fullScreenAdUnit = fullScreenAdUnit;
+	self.interstitialAdUnit = interstitialAdUnit;
 	self.isOverlap = isOverlap;
 	self.isTest = isTest;	
 }
@@ -305,17 +305,17 @@
 	}
 }
 
-- (void) _preloadFullScreenAd {    
+- (void) _preloadInterstitialAd {    
 	self.fullScreenAdPreload = YES;	
 	
-	[self loadFullScreenAd];
+	[self loadinterstitialAd];
 }
 
-- (void) loadFullScreenAd {
+- (void) loadinterstitialAd {
     if (interstitialView == nil || self.interstitialView.hasBeenUsed){//ios only //An interstitial object can only be used once for ios
         self.interstitialView = [[GADInterstitial alloc] init];
         //
-		self.interstitialView.adUnitID = fullScreenAdUnit;
+		self.interstitialView.adUnitID = interstitialAdUnit;
         self.interstitialView.delegate = self;
     }	
 	
@@ -334,14 +334,14 @@
 	[self.interstitialView loadRequest:request];
 }
 
-- (void) _showFullScreenAd {
+- (void) _showInterstitialAd {
 	if(fullScreenAdPreload) {
 		fullScreenAdPreload = NO;
 
 		[self.interstitialView presentFromRootViewController:[self.plugin getViewController]];
 	}
 	else{	
-		[self loadFullScreenAd];
+		[self loadinterstitialAd];
 	}		
 }
 
@@ -396,7 +396,7 @@
 	NSLog(@"interstitialDidReceiveAd");
 	
 	if(fullScreenAdPreload) {
-		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onFullScreenAdPreloaded"];
+		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdPreloaded"];
 		[pr setKeepCallbackAsBool:YES];
 		[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 		//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -404,7 +404,7 @@
 		//[self.commandDelegate sendPluginResult:pr callbackId:self.callbackIdKeepCallback];			
 	}
 	
-	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onFullScreenAdLoaded"];
+	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdLoaded"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -427,7 +427,7 @@
 - (void) interstitialWillPresentScreen:(GADInterstitial *)ad {
 	NSLog(@"interstitialWillPresentScreen");
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onFullScreenAdShown"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdShown"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -442,7 +442,7 @@
 - (void) interstitialDidDismissScreen:(GADInterstitial *)ad {
 	NSLog(@"interstitialDidDismissScreen");
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onFullScreenAdHidden"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdHidden"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];

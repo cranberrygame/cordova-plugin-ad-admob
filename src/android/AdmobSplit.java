@@ -27,6 +27,11 @@ import android.annotation.TargetApi;
 //
 import java.lang.reflect.Method;
 
+//
+import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
+import com.google.android.gms.ads.AdView;
+
 public class AdmobSplit extends AdmobOverlap {
 	protected static final String LOG_TAG = "AdmobSplit";
 	
@@ -125,6 +130,7 @@ public class AdmobSplit extends AdmobOverlap {
 	}
 	
 	protected void addBannerViewOverlap(String position, String size) {
+///*
 		if (plugin.getWebView() != null) {
 			//ViewGroup parentView = (ViewGroup)plugin.getWebView().getParent();//only for ~cordova4
 			//ViewGroup parentView = (ViewGroup)plugin.getWebView().getRootView();//only for ~cordova4
@@ -140,14 +146,51 @@ public class AdmobSplit extends AdmobOverlap {
 				//parentView.bringToFront();
 			}
 		}
+		
+		Log.d("AdmobPlugin", "position: " + position);
+//*/
+/*	
+        FrameLayout v = new FrameLayout(plugin.getCordova().getActivity());
+        //http://developer.android.com/reference/android/widget/FrameLayout.LayoutParams.html#FrameLayout.LayoutParams(int, int)
+        //http://rerethink.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%BD%94%EB%93%9C%EC%97%90%EC%84%9C-LayoutParams-%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%98%EC%97%AC-Gravity-%EC%A3%BC%EA%B8%B0
+        //http://rerethink.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%ED%85%8C%EC%9D%B4%EB%B8%94%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%EC%BD%94%EB%93%9C%EC%83%81-%EC%84%A4%EC%A0%95
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		bannerView.setLayoutParams(params);
+		v.addView(bannerView);
+        //v.addView(bannerView, params);
+        
+		if (plugin.getWebView() != null) {
+			//ViewGroup parentView = (ViewGroup)plugin.getWebView().getParent();//only for ~cordova4
+			//ViewGroup parentView = (ViewGroup)plugin.getWebView().getRootView();//only for ~cordova4
+			//ViewGroup parentView = (ViewGroup)plugin.getWebView().getView();//only for cordova5
+//			ViewGroup parentView = (ViewGroup)getView(plugin.getWebView());
+			ViewGroup parentView = (ViewGroup)getView(plugin.getWebView()).getParent();
+			if (parentView != null) {
+				if (position.equals("top-left") || position.equals("top-center")|| position.equals("top-right") || position.equals("left") || position.equals("center") || position.equals("right")) {	
+					//parentView.addView(bannerView, 0);
+					parentView.addView(v, 0);
+				}
+				else {		
+					//parentView.addView(bannerView);
+					parentView.addView(v);
+				}
+				//parentView.bringToFront();
+			}
+		}
+		
+		Log.d("AdmobPlugin", "position: " + position);
+*/			
 	}
 	
 	protected void removeBannerViewOverlap() {
+		if (bannerView == null)
+			return;
+			
 		ViewGroup parentView = (ViewGroup)bannerView.getParent();
 		if (parentView != null) {
 			parentView.removeView(bannerView);
 			bannerView.destroy();
 			bannerView = null;
-		}
+		}		
 	}	
 }

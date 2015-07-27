@@ -95,7 +95,7 @@ public class AdmobOverlap implements PluginDelegate {
 	protected Plugin plugin;	
 	//
 	protected String bannerAdUnit;
-	protected String fullScreenAdUnit;
+	protected String interstitialAdUnit;
 	protected boolean isOverlap;
 	protected boolean isTest;
 	//
@@ -104,7 +104,7 @@ public class AdmobOverlap implements PluginDelegate {
 	protected int lastOrientation;
 	//
 	protected boolean bannerAdPreload;	
-	protected boolean fullScreenAdPreload;
+	protected boolean interstitialAdPreload;
 	//admob
 	protected RelativeLayout bannerViewLayout;
 	protected AdView bannerView;
@@ -117,9 +117,9 @@ public class AdmobOverlap implements PluginDelegate {
 	public void _setLicenseKey(String email, String licenseKey) {
 	}
 	
-	public void _setUp(String bannerAdUnit, String fullScreenAdUnit, boolean isOverlap, boolean isTest) {
+	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest) {
 		this.bannerAdUnit = bannerAdUnit;
-		this.fullScreenAdUnit = fullScreenAdUnit;
+		this.interstitialAdUnit = interstitialAdUnit;
 		this.isOverlap = isOverlap;
 		this.isTest = isTest;			
 		
@@ -393,17 +393,17 @@ public class AdmobOverlap implements PluginDelegate {
 		}
 	}
 	
-	public void _preloadFullScreenAd() {
-		fullScreenAdPreload = true;
+	public void _preloadInterstitialAd() {
+		interstitialAdPreload = true;
 
-		loadFullScreenAd();
+		loadInterstitialAd();
 	}
 	
-	private void loadFullScreenAd() {
+	private void loadInterstitialAd() {
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
-			interstitialView.setAdUnitId(this.fullScreenAdUnit);
+			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
 		
@@ -419,14 +419,14 @@ public class AdmobOverlap implements PluginDelegate {
 		interstitialView.loadAd(request);		
 	}
 
-	public void _showFullScreenAd() {
-		if(fullScreenAdPreload) {
-			fullScreenAdPreload = false;
+	public void _showInterstitialAd() {
+		if(interstitialAdPreload) {
+			interstitialAdPreload = false;
 
 			interstitialView.show();
 		}
 		else {
-			loadFullScreenAd();
+			loadInterstitialAd();
 		}		
 	}
     
@@ -471,8 +471,8 @@ public class AdmobOverlap implements PluginDelegate {
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
     		
-    		if(fullScreenAdPreload) {
-    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdPreloaded");
+    		if(interstitialAdPreload) {
+    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdPreloaded");
     			pr.setKeepCallback(true);
     			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -480,14 +480,14 @@ public class AdmobOverlap implements PluginDelegate {
     			//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		}
     		
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdLoaded");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdLoaded");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     		
-    		if(!fullScreenAdPreload) {
+    		if(!interstitialAdPreload) {
     			interstitialView.show();
     		}	
     	}
@@ -503,7 +503,7 @@ public class AdmobOverlap implements PluginDelegate {
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");
     		
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdShown");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -514,7 +514,7 @@ public class AdmobOverlap implements PluginDelegate {
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");
 
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onFullScreenAdHidden");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);

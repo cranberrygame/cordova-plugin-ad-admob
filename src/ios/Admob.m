@@ -18,7 +18,7 @@
 @synthesize licenseKey_;
 @synthesize validLicenseKey;
 static NSString *TEST_BANNER_AD_UNIT = @"ca-app-pub-4906074177432504/4286495279";
-static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/5763228472";
+static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/5763228472";
 	
 - (void) pluginInitialize {
     [super pluginInitialize];    
@@ -40,20 +40,20 @@ static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/576322
     //self.viewController
     //self.webView	
     //NSString *bannerAdUnit = [command.arguments objectAtIndex: 0];
-    //NSString *fullScreenAdUnit = [command.arguments objectAtIndex: 1];
+    //NSString *interstitialAdUnit = [command.arguments objectAtIndex: 1];
     //BOOL isOverlap = [[command.arguments objectAtIndex: 2] boolValue];
     //BOOL isTest = [[command.arguments objectAtIndex: 3] boolValue];
 	//NSArray *zoneIds = [command.arguments objectAtIndex:4];	
     //NSLog(@"%@", bannerAdUnit);
-    //NSLog(@"%@", fullScreenAdUnit);
+    //NSLog(@"%@", interstitialAdUnit);
     //NSLog(@"%d", isOverlap);
     //NSLog(@"%d", isTest);
     NSString *bannerAdUnit = [command.arguments objectAtIndex: 0];
-    NSString *fullScreenAdUnit = [command.arguments objectAtIndex: 1];
+    NSString *interstitialAdUnit = [command.arguments objectAtIndex: 1];
     BOOL isOverlap = [[command.arguments objectAtIndex: 2] boolValue];
     BOOL isTest = [[command.arguments objectAtIndex: 3] boolValue];
     NSLog(@"%@", bannerAdUnit);
-    NSLog(@"%@", fullScreenAdUnit);
+    NSLog(@"%@", interstitialAdUnit);
     NSLog(@"%d", isOverlap);
     NSLog(@"%d", isTest);
     
@@ -65,7 +65,7 @@ static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/576322
         pluginDelegate = [[AdmobSplit alloc] initWithPlugin:self];
     
     //[self.commandDelegate runInBackground:^{
-        [self _setUp:bannerAdUnit anAdUnitFullScreen:fullScreenAdUnit anIsOverlap:isOverlap anIsTest:isTest];
+        [self _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit anIsOverlap:isOverlap anIsTest:isTest];
     //}];
 }
 
@@ -97,15 +97,15 @@ static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/576322
 		[self _hideBannerAd];
     //}];
 }
-- (void) preloadFullScreenAd: (CDVInvokedUrlCommand*)command {
+- (void) preloadInterstitialAd: (CDVInvokedUrlCommand*)command {
     //[self.commandDelegate runInBackground:^{
-		[self _preloadFullScreenAd];
+		[self _preloadInterstitialAd];
     //}];
 }
 
-- (void) showFullScreenAd: (CDVInvokedUrlCommand*)command {
+- (void) showInterstitialAd: (CDVInvokedUrlCommand*)command {
     //[self.commandDelegate runInBackground:^{
-		[self _showFullScreenAd];
+		[self _showInterstitialAd];
     //}];
 }
 
@@ -176,15 +176,15 @@ static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/576322
 	return  output;
 }
 
-- (void) _setUp:(NSString *)bannerAdUnit anAdUnitFullScreen:(NSString *)fullScreenAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	if (!validLicenseKey) {
 		if (arc4random() % 100 <= 1) {//0 ~ 99			
 			bannerAdUnit = TEST_BANNER_AD_UNIT;
-			fullScreenAdUnit = TEST_FULL_SCREEN_AD_UNIT;
+			interstitialAdUnit = TEST_INTERSTITIAL_AD_UNIT;
 		}
 	}
 	
-	[pluginDelegate _setUp:bannerAdUnit anAdUnitFullScreen:fullScreenAdUnit anIsOverlap:isOverlap anIsTest:isTest];
+	[pluginDelegate _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit anIsOverlap:isOverlap anIsTest:isTest];
 }
 		
 - (void) _preloadBannerAd {
@@ -203,12 +203,12 @@ static NSString *TEST_FULL_SCREEN_AD_UNIT = @"ca-app-pub-4906074177432504/576322
     [pluginDelegate _hideBannerAd];
 }
 
-- (void) _preloadFullScreenAd {    
-	[pluginDelegate _preloadFullScreenAd];
+- (void) _preloadInterstitialAd {    
+	[pluginDelegate _preloadInterstitialAd];
 }
 
-- (void) _showFullScreenAd {
-	[pluginDelegate _showFullScreenAd];	
+- (void) _showInterstitialAd {
+	[pluginDelegate _showInterstitialAd];	
 }
 
 //cranberrygame end: PluginDelegate
