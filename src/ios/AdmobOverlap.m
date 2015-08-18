@@ -3,6 +3,8 @@
 //Homepage: http://cranberrygame.github.io
 //License: MIT (http://opensource.org/licenses/MIT)
 #import "AdmobOverlap.h"
+#import <AdSupport/ASIdentifierManager.h>
+#import <CommonCrypto/CommonDigest.h> //md5
 
 @implementation AdmobOverlap
 
@@ -139,18 +141,30 @@
 	}
 
 	GADRequest *request = [GADRequest request];
-	if (isTest) {
-	/*
-		request.testDevices =
-		[NSArray arrayWithObjects:
-		GAD_SIMULATOR_ID,
-		// TODO: Add your device/simulator test identifiers here. They are printed to the console when the app is launched.			
-		nil];
-	*/
-		//https://github.com/acyl/phonegap-plugins-1/blob/master/iOS/AdMobPlugin/AdMobPlugin.m
-//		request.testing = YES;//not exist in ios sdk 7.1.0
-	}
+    //Note: Starting in SDK version 7.0.0, simulators will automatically show test ads.
+    //https://developers.google.com/admob/ios/targeting
+    if (self.isTest) {
+		NSUUID* adid = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+        request.testDevices =
+        [NSArray arrayWithObjects:
+        // TODO: Add your device/simulator test identifiers here. They are printed to the console when the app is launched.
+        [self md5:adid.UUIDString],
+        nil];
+    }
 	[self.bannerView loadRequest:request];	
+}
+
+- (NSString*) md5:(NSString*) input {
+	const char *cStr = [input UTF8String];
+	unsigned char digest[16];
+	CC_MD5( cStr, strlen(cStr), digest ); // This is the md5 call
+
+	NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
+
+	for(int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
+	[output appendFormat:@"%02x", digest[i]];
+
+	return  output;
 }
 
 - (void) _showBannerAd:(NSString *)position aSize:(NSString *)size {
@@ -320,17 +334,14 @@
     }	
 	
 	GADRequest *request = [GADRequest request];
-	if (isTest) {
-	/*
-		request.testDevices =
-		[NSArray arrayWithObjects:
-		GAD_SIMULATOR_ID,
-		// TODO: Add your device/simulator test identifiers here. They are printed to the console when the app is launched.			
-		nil];
-	*/
-		//https://github.com/acyl/phonegap-plugins-1/blob/master/iOS/AdMobPlugin/AdMobPlugin.m
-//		request.testing = YES;//not exist in ios sdk 7.1.0
-	}		
+    if (self.isTest) {
+        NSUUID* adid = [[ASIdentifierManager sharedManager] advertisingIdentifier];
+        request.testDevices =
+        [NSArray arrayWithObjects:
+        // TODO: Add your device/simulator test identifiers here. They are printed to the console when the app is launched.
+        [self md5:adid.UUIDString],
+        nil];
+    }
 	[self.interstitialView loadRequest:request];
 }
 
@@ -396,7 +407,7 @@
 	NSLog(@"interstitialDidReceiveAd");
 	
 	if(fullScreenAdPreload) {
-		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdPreloaded"];
+		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onInterstitialAdPreloaded"];
 		[pr setKeepCallbackAsBool:YES];
 		[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 		//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -404,7 +415,7 @@
 		//[self.commandDelegate sendPluginResult:pr callbackId:self.callbackIdKeepCallback];			
 	}
 	
-	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdLoaded"];
+	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onInterstitialAdLoaded"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -427,7 +438,7 @@
 - (void) interstitialWillPresentScreen:(GADInterstitial *)ad {
 	NSLog(@"interstitialWillPresentScreen");
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdShown"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onInterstitialAdShown"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -442,7 +453,7 @@
 - (void) interstitialDidDismissScreen:(GADInterstitial *)ad {
 	NSLog(@"interstitialDidDismissScreen");
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"oninterstitialAdHidden"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onInterstitialAdHidden"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
