@@ -4,7 +4,7 @@ Cordova AdMob plugin
 # Overview #
 Show admob banner and interstitial ad
 
-[android, ios, wp8] [cordova cli] [xdk] [cocoon]
+[android, ios, wp8] [cordova cli] [xdk] [cocoon] [phonegap build service]
 
 Requires admob account http://www.google.com/ads/admob/
 
@@ -297,7 +297,7 @@ else if( navigator.userAgent.match(/Windows Phone/i) ) {
 
 document.addEventListener("deviceready", function(){
     //if no license key, 2% ad traffic share for dev support.
-    //you can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova
+    //you can get paid license key: https://cranberrygame.github.io/request_cordova_ad_plugin_paid_license_key
     //window.admob.setLicenseKey("yourEmailId@yourEmaildDamin.com", "yourFreeLicenseKey");
 
     window.admob.setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
