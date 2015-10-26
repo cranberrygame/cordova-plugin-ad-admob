@@ -84,8 +84,8 @@ You can see Plugins For Cordova in one page: http://cranberrygame.github.io?refe
 1.0.97
     Fixed ios test mode not working issue.
     Fixed ios not working onInterstitialAdHidden event issue.
-1.0.102
-    Updated Admob iOS SDK v7.5.2
+1.0.103
+    Updated Admob iOS SDK v7.3.1
 
 To-Do:
 
