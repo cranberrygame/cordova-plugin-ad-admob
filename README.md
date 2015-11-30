@@ -58,11 +58,11 @@ You can see Plugins For Cordova in one page: http://cranberrygame.github.io?refe
 	supports banner ad callback (onBannerAdPreloaded)
 	supports full screen ad callback (onFullScreenAdPreloaded)
 1.0.31
-	Updated Admob SDK
+	Updated AdMob SDK
 		iOS 6.12.2
 1.0.39
 	Moved package name from com.cranberrygame.phonegap.plugin.ad.admob to com.cranberrygame.cordova.plugin.ad.admob
-	Updated Admob SDK
+	Updated AdMob SDK
 		android com.google.playservices@21.0.0
 		iOS GoogleMobileAdsSdkiOS-7.1.0
 1.0.53
@@ -74,7 +74,7 @@ You can see Plugins For Cordova in one page: http://cranberrygame.github.io?refe
 1.0.72
 	Fixed Android cordova5 build error.
 1.0.94
-	Updated Admob SDK
+	Updated AdMob SDK
 		Windows Phone 8 - 6.5.13	
 		Supports wp8 split mode
 1.0.95
@@ -85,7 +85,7 @@ You can see Plugins For Cordova in one page: http://cranberrygame.github.io?refe
     Fixed ios test mode not working issue.
     Fixed ios not working onInterstitialAdHidden event issue.
 1.0.103
-    Updated Admob iOS SDK v7.3.1
+    Updated AdMob iOS SDK v7.3.1
 
 To-Do:
 
@@ -119,12 +119,10 @@ cordova plugin add cordova-plugin-ad-admob-phunware
 ```
 
 ## Xdk ##
-https://software.intel.com/en-us/intel-xdk - Download XDK - XDK PORJECTS - [specific project] - CORDOVA HYBRID MOBILE APP SETTINGS - Plugins - Third Party Plugins - Add a Third Party Plugin - Get Plugin from the Web -
+https://software.intel.com/en-us/intel-xdk - Download XDK - XDK PORJECTS - [specific project] - CORDOVA HYBRID MOBILE APP SETTINGS - Plugin Management - Add Plugins to this Project - Third Party Plugins -
 ```c
-Name: admob
+Plugin Source: Cordova plugin registry
 Plugin ID: cordova-plugin-ad-admob
-[Do not check] Plugin is located in the Apache Cordova Plugins Registry
-Repo URL: https://github.com/cranberrygame/cordova-plugin-ad-admob
 
 //If you want to mediate admob with other ad networks, then install the following additional ad networks you want to mediate with. (but too many mediations will increase app size)
 Name: admob-adcolony
@@ -227,19 +225,19 @@ How to install c2 native plugins in xdk, cocoon and cordova cli<br>
 https://plus.google.com/102658703990850475314/posts/XS5jjEApJYV
 <br>
 //If you want to mediate admob with other ad networks, then install the following additional ad networks you want to mediate with. (but too many mediations will increase app size)<br>
-Cordova AdmobAdColony construct2 plugin<br>
-Cordova AdmobFacebookAds construct2 plugin<br>
-Cordova AdmobFlurryAds construct2 plugin<br>
-Cordova AdmobHuntMAds construct2 plugin<br>
-Cordova AdmobiAd construct2 plugin<br>
-Cordova AdmobInMobi construct2 plugin<br>
-Cordova AdmobLeadbolt construct2 plugin<br>
-Cordova AdmobLifeStreetMedia construct2 plugin<br>
-Cordova AdmobMillennialMedia construct2 plugin<br>
-Cordova AdmobMobFox construct2 plugin<br>
-Cordova AdmobMojiva construct2 plugin<br>
-Cordova AdmobMoPub construct2 plugin<br>
-Cordova AdmobPhunware construct2 plugin<br>
+Cordova AdMobAdColony construct2 plugin<br>
+Cordova AdMobFacebookAds construct2 plugin<br>
+Cordova AdMobFlurryAds construct2 plugin<br>
+Cordova AdMobHuntMAds construct2 plugin<br>
+Cordova AdMobiAd construct2 plugin<br>
+Cordova AdMobInMobi construct2 plugin<br>
+Cordova AdMobLeadbolt construct2 plugin<br>
+Cordova AdMobLifeStreetMedia construct2 plugin<br>
+Cordova AdMobMillennialMedia construct2 plugin<br>
+Cordova AdMobMobFox construct2 plugin<br>
+Cordova AdMobMojiva construct2 plugin<br>
+Cordova AdMobMoPub construct2 plugin<br>
+Cordova AdMobPhunware construct2 plugin<br>
 
 # Server setting #
 ```c

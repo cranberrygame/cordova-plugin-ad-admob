@@ -150,7 +150,7 @@ module.exports = {
             null,
             null,
             'Admob',
-            'preloadFullScreenAd',
+            'preloadInterstitialAd',
             []
         ); 
     },
@@ -160,7 +160,7 @@ module.exports = {
             null,
             null,
             'Admob',
-            'showFullScreenAd',
+            'showInterstitialAd',
             []
         ); 
     },
