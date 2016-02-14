@@ -127,7 +127,7 @@ public class AdmobOverlap implements PluginDelegate {
 		
 		lastOrientation = -1;		
 		try{
-			handleLayoutChangeOverlap();
+			//handleLayoutChangeOverlap();
 		}
 		catch(Exception ex) {
 			Log.d(LOG_TAG, String.format("0-2: %s", ex.getMessage()));//	
