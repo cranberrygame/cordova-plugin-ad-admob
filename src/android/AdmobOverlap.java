@@ -127,6 +127,8 @@ public class AdmobOverlap implements PluginDelegate {
 		
 		lastOrientation = -1;		
 		handleLayoutChangeOverlap();
+		
+		Util.alert(plugin.getCordova().getActivity(),"0-2");//
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
