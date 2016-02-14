@@ -118,6 +118,8 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest) {
+		Util.alert(plugin.getCordova().getActivity(),"0");//
+
 		this.bannerAdUnit = bannerAdUnit;
 		this.interstitialAdUnit = interstitialAdUnit;
 		this.isOverlap = isOverlap;
