@@ -404,7 +404,9 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());					
+			interstitialView.setAdListener(new MyInterstitialViewListener());
+			
+			Util.alert(cordova.getActivity(),"1");//
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -487,8 +489,14 @@ public class AdmobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     		
+    		Util.alert(cordova.getActivity(),"2");//
+    		
     		if(!interstitialAdPreload) {
+    			Util.alert(cordova.getActivity(),"3");//
+    			
     			interstitialView.show();
+    			
+    			Util.alert(cordova.getActivity(),"4");//
     		}	
     	}
 		
