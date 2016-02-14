@@ -118,22 +118,13 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest) {
-		Util.alert(plugin.getCordova().getActivity(),"0");//
-
 		this.bannerAdUnit = bannerAdUnit;
 		this.interstitialAdUnit = interstitialAdUnit;
 		this.isOverlap = isOverlap;
 		this.isTest = isTest;			
 		
 		lastOrientation = -1;		
-		try{
-			handleLayoutChangeOverlap();
-		}
-		catch(Exception ex) {
-			Log.d(LOG_TAG, String.format("0-2: %s", ex.getMessage()));//
-			Util.alert(plugin.getCordova().getActivity(),String.format("0-2: %s", ex.getMessage()));//
-		}
-		Util.alert(plugin.getCordova().getActivity(),"0-3");//
+		handleLayoutChangeOverlap();
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -409,15 +400,11 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-		Util.alert(plugin.getCordova().getActivity(),"1-1");//
-		
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());
-			
-			Util.alert(plugin.getCordova().getActivity(),"1-2");//
+			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -429,14 +416,10 @@ public class AdmobOverlap implements PluginDelegate {
 			builder.addTestDevice(deviceId);		
 		}
 		AdRequest request = builder.build();			
-		interstitialView.loadAd(request);
-		
-		Util.alert(plugin.getCordova().getActivity(),"2");//
+		interstitialView.loadAd(request);		
 	}
 
 	public void _showInterstitialAd() {
-		Util.alert(plugin.getCordova().getActivity(),"3");//
-		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
@@ -504,14 +487,8 @@ public class AdmobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     		
-    		Util.alert(plugin.getCordova().getActivity(),"4");//
-    		
     		if(!interstitialAdPreload) {
-    			Util.alert(plugin.getCordova().getActivity(),"5");//
-    			
     			interstitialView.show();
-    			
-    			Util.alert(plugin.getCordova().getActivity(),"6");//
     		}	
     	}
 		
