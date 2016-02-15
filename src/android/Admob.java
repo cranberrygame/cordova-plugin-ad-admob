@@ -258,21 +258,21 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 	}
 
 	private void preloadInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-			////@Override
-			////public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
 				_preloadInterstitialAd();
-			////}
-		////});
+			}
+		});
 	}
 
 	private void showInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-			////@Override
-			////public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
 				_showInterstitialAd();
-			////}
-		////});
+			}
+		});
 	}
 	
 	//cranberrygame start: Plugin
