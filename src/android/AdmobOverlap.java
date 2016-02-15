@@ -409,7 +409,9 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-		Util.alert(plugin.getCordova().getActivity(),"1-1");//
+    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdPreloaded");////
+    			pr.setKeepCallback(true);
+    			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
 		
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
@@ -417,7 +419,12 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());
 			
-			Util.alert(plugin.getCordova().getActivity(),"1-2");//
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdLoaded");////
+    		pr.setKeepCallback(true);
+    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+    		//pr.setKeepCallback(true);
+    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -431,11 +438,21 @@ public class AdmobOverlap implements PluginDelegate {
 		AdRequest request = builder.build();			
 		interstitialView.loadAd(request);
 		
-		Util.alert(plugin.getCordova().getActivity(),"2");//
+		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
+		pr.setKeepCallback(true);
+		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+		//pr.setKeepCallback(true);
+		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
 	}
 
 	public void _showInterstitialAd() {
-		Util.alert(plugin.getCordova().getActivity(),"3");//
+		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdHidden");////
+		pr.setKeepCallback(true);
+		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+		//pr.setKeepCallback(true);
+		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
 		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
@@ -503,15 +520,9 @@ public class AdmobOverlap implements PluginDelegate {
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-    		
-    		Util.alert(plugin.getCordova().getActivity(),"4");//
-    		
+
     		if(!interstitialAdPreload) {
-    			Util.alert(plugin.getCordova().getActivity(),"5");//
-    			
     			interstitialView.show();
-    			
-    			Util.alert(plugin.getCordova().getActivity(),"6");//
     		}	
     	}
 		
