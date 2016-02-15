@@ -453,7 +453,7 @@ public class AdmobOverlap implements PluginDelegate {
 		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
 		//pr.setKeepCallback(true);
 		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
-		
+/*		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
@@ -462,6 +462,7 @@ public class AdmobOverlap implements PluginDelegate {
 		else {
 			loadInterstitialAd();
 		}		
+*/		
 	}
     
    //http://developer.android.com/reference/com/google/android/gms/ads/AdListener.html
