@@ -409,22 +409,19 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdPreloaded");////
-    			pr.setKeepCallback(true);
-    			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-		
+
 		/////if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());
 			
-    		pr = new PluginResult(PluginResult.Status.OK, "onBannerAdLoaded");////
-    		pr.setKeepCallback(true);
-    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-    		//pr.setKeepCallback(true);
-    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
+		pr.setKeepCallback(true);
+		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+		//pr.setKeepCallback(true);
+		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
 		////}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -438,12 +435,7 @@ public class AdmobOverlap implements PluginDelegate {
 		AdRequest request = builder.build();			
 		interstitialView.loadAd(request);
 		
-		pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
-		pr.setKeepCallback(true);
-		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-		//pr.setKeepCallback(true);
-		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
+
 	}
 
 	public void _showInterstitialAd() {
