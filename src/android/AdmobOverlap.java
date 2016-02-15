@@ -118,22 +118,13 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	public void _setUp(String bannerAdUnit, String interstitialAdUnit, boolean isOverlap, boolean isTest) {
-		Util.alert(plugin.getCordova().getActivity(),"0");//
-
 		this.bannerAdUnit = bannerAdUnit;
 		this.interstitialAdUnit = interstitialAdUnit;
 		this.isOverlap = isOverlap;
 		this.isTest = isTest;			
 		
 		lastOrientation = -1;		
-		try{
-			handleLayoutChangeOverlap();
-		}
-		catch(Exception ex) {
-			Log.d(LOG_TAG, String.format("0-2: %s", ex.getMessage()));//
-			Util.alert(plugin.getCordova().getActivity(),String.format("0-2: %s", ex.getMessage()));//
-		}
-		Util.alert(plugin.getCordova().getActivity(),"0-3");//
+		handleLayoutChangeOverlap();
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -409,23 +400,14 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());
-			
-		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
-		pr.setKeepCallback(true);
-		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-		//pr.setKeepCallback(true);
-		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
+			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
-/*		
 		if(isTest) {
 			builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR); 
 			//builder.addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE");				
@@ -433,21 +415,11 @@ public class AdmobOverlap implements PluginDelegate {
 			String deviceId = Util.md5(ANDROID_ID).toUpperCase();
 			builder.addTestDevice(deviceId);		
 		}
-*/		
 		AdRequest request = builder.build();			
-		interstitialView.loadAd(request);
-		
-
+		interstitialView.loadAd(request);		
 	}
 
 	public void _showInterstitialAd() {
-		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdHidden");////
-		pr.setKeepCallback(true);
-		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-		//pr.setKeepCallback(true);
-		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);	
-		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
@@ -456,7 +428,6 @@ public class AdmobOverlap implements PluginDelegate {
 		else {
 			loadInterstitialAd();
 		}		
-	
 	}
     
    //http://developer.android.com/reference/com/google/android/gms/ads/AdListener.html
@@ -515,7 +486,7 @@ public class AdmobOverlap implements PluginDelegate {
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-
+    		
     		if(!interstitialAdPreload) {
     			interstitialView.show();
     		}	
