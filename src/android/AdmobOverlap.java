@@ -419,7 +419,7 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());
 			
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdLoaded");////
+    		pr = new PluginResult(PluginResult.Status.OK, "onBannerAdLoaded");////
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -438,7 +438,7 @@ public class AdmobOverlap implements PluginDelegate {
 		AdRequest request = builder.build();			
 		interstitialView.loadAd(request);
 		
-		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
+		pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");////
 		pr.setKeepCallback(true);
 		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
 		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
