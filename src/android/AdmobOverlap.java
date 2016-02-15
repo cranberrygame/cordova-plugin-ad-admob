@@ -425,6 +425,7 @@ public class AdmobOverlap implements PluginDelegate {
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
+/*		
 		if(isTest) {
 			builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR); 
 			//builder.addTestDevice("INSERT_YOUR_HASHED_DEVICE_ID_HERE");				
@@ -432,6 +433,7 @@ public class AdmobOverlap implements PluginDelegate {
 			String deviceId = Util.md5(ANDROID_ID).toUpperCase();
 			builder.addTestDevice(deviceId);		
 		}
+*/		
 		AdRequest request = builder.build();			
 		interstitialView.loadAd(request);
 		
