@@ -158,12 +158,12 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		Log.d(LOG_TAG, String.format("%s", email));			
 		Log.d(LOG_TAG, String.format("%s", licenseKey));
 		
-		////cordova.getActivity().runOnUiThread(new Runnable() {
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 				_setLicenseKey(email, licenseKey);
-		////	}
-		////});
+			}
+		});
 	}
 	
 	private void setUp(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -208,21 +208,21 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		else
 			pluginDelegate = new AdmobSplit(this);
 		
-		////cordova.getActivity().runOnUiThread(new Runnable() {
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 				_setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
-		////	}
-		////});
+			}
+		});
 	}
 	
 	private void preloadBannerAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-		////	@Override
-		////	public void run() {
-	////			_preloadBannerAd();
-		////	}
-		////});
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
+				_preloadBannerAd();
+			}
+		});
 	}
 
 	private void showBannerAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -231,62 +231,62 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		Log.d(LOG_TAG, String.format("%s", position));
 		Log.d(LOG_TAG, String.format("%s", size));
 	
-		////cordova.getActivity().runOnUiThread(new Runnable() {
-		////	@Override
-		////	public void run() {
-	////			_showBannerAd(position, size);
-		////	}
-		////});
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				_showBannerAd(position, size);
+			}
+		});
 	}
 
 	private void reloadBannerAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-		////	@Override
-		////	public void run() {
-	////			_reloadBannerAd();
-		////	}
-		////});
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
+				_reloadBannerAd();
+			}
+		});
 	}
 	
 	private void hideBannerAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-		////	@Override
-		////	public void run() {
-	////			_hideBannerAd();
-		////	}
-		////});
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
+				_hideBannerAd();
+			}
+		});
 	}
 
 	private void preloadInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
 				_preloadInterstitialAd();
-		////	}
-		////});
+			}
+		});
 	}
 
 	private void showInterstitialAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		////cordova.getActivity().runOnUiThread(new Runnable(){
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable(){
+			@Override
+			public void run() {
 				_showInterstitialAd();
-		////	}
-		////});
+			}
+		});
 	}
 	
 	//cranberrygame start: Plugin
 
 	public CordovaWebView getWebView() {
-		return this.webView;
+		return webView;
 	}
 
 	public CordovaInterface getCordova() {
-		return this.cordova;
+		return cordova;
 	}
 
 	public CallbackContext getCallbackContextKeepCallback() {
-		return this.callbackContextKeepCallback;
+		return callbackContextKeepCallback;
 	}
 
 	//cranberrygame end: Plugin
