@@ -90,7 +90,7 @@ class Util {
     }
 }
 
-public class AdmobOverlap implements PluginDelegate, AdListener {
+public class AdmobOverlap implements PluginDelegate {
 	protected static final String LOG_TAG = "AdmobOverlap";
 	protected Plugin plugin;	
 	//
@@ -467,7 +467,7 @@ public class AdmobOverlap implements PluginDelegate, AdListener {
     	}
     }
 
-////    class MyInterstitialViewListener extends AdListener {
+    class MyInterstitialViewListener extends AdListener {
 
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
@@ -522,7 +522,7 @@ public class AdmobOverlap implements PluginDelegate, AdListener {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
     	}
-////    }
+    }
 
     public void onPause(boolean multitasking) {
 		if (bannerView != null) {
