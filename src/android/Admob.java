@@ -220,7 +220,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		////cordova.getActivity().runOnUiThread(new Runnable(){
 		////	@Override
 		////	public void run() {
-				_preloadBannerAd();
+	////			_preloadBannerAd();
 		////	}
 		////});
 	}
@@ -234,7 +234,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		////cordova.getActivity().runOnUiThread(new Runnable() {
 		////	@Override
 		////	public void run() {
-				_showBannerAd(position, size);
+	////			_showBannerAd(position, size);
 		////	}
 		////});
 	}
@@ -243,7 +243,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		////cordova.getActivity().runOnUiThread(new Runnable(){
 		////	@Override
 		////	public void run() {
-				_reloadBannerAd();
+	////			_reloadBannerAd();
 		////	}
 		////});
 	}
@@ -252,7 +252,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		////cordova.getActivity().runOnUiThread(new Runnable(){
 		////	@Override
 		////	public void run() {
-				_hideBannerAd();
+	////			_hideBannerAd();
 		////	}
 		////});
 	}
