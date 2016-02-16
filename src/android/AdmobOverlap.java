@@ -404,8 +404,7 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-////			interstitialView.setAdListener(new MyInterstitialViewListener());					
-			interstitialView.setAdListener(this);					
+			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
