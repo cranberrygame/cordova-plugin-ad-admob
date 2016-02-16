@@ -90,7 +90,7 @@ class Util {
     }
 }
 
-public class AdmobOverlap implements PluginDelegate {
+public class AdmobOverlap implements PluginDelegate, AdListener {
 	protected static final String LOG_TAG = "AdmobOverlap";
 	protected Plugin plugin;	
 	//
@@ -404,7 +404,8 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());					
+////			interstitialView.setAdListener(new MyInterstitialViewListener());					
+			interstitialView.setAdListener(this);					
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -466,7 +467,7 @@ public class AdmobOverlap implements PluginDelegate {
     	}
     }
 
-    class MyInterstitialViewListener extends AdListener {
+////    class MyInterstitialViewListener extends AdListener {
 
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
@@ -521,7 +522,7 @@ public class AdmobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
     	}
-    }
+////    }
 
     public void onPause(boolean multitasking) {
 		if (bannerView != null) {
