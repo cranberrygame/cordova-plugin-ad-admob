@@ -278,15 +278,15 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 	//cranberrygame start: Plugin
 
 	public CordovaWebView getWebView() {
-		return webView;
+		return this.webView;
 	}
 
 	public CordovaInterface getCordova() {
-		return cordova;
+		return this.cordova;
 	}
 
 	public CallbackContext getCallbackContextKeepCallback() {
-		return callbackContextKeepCallback;
+		return this.callbackContextKeepCallback;
 	}
 
 	//cranberrygame end: Plugin
