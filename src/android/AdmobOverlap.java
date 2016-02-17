@@ -405,7 +405,7 @@ public class AdmobOverlap implements PluginDelegate {
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			//interstitialView.setAdListener(new MyInterstitialViewListener());
-			interstitialView.setAdListener(new MyInterstitialViewListener(){
+			interstitialView.setAdListener(new AdListener(){
 				
 				@Override
 			    	public void onAdLoaded() {
