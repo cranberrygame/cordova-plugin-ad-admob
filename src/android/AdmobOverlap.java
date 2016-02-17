@@ -124,16 +124,9 @@ public class AdmobOverlap implements PluginDelegate {
 		this.isTest = isTest;			
 		
 		lastOrientation = -1;		
-		handleLayoutChangeOverlap();
-		
-		if (interstitialView == null) {////
-			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
-			//
-			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());					
-		}		
+//		handleLayoutChangeOverlap();
 	}
-	
+/*	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	protected void handleLayoutChangeOverlap() {
 		//http://stackoverflow.com/questions/24539578/cordova-plugin-listening-to-device-orientation-change-is-it-possible
@@ -192,7 +185,7 @@ public class AdmobOverlap implements PluginDelegate {
 			}		    
 		});		
     }
-
+*/
 	public static View getView(CordovaWebView webView) {	
 		if(View.class.isAssignableFrom(CordovaWebView.class)) {
 			return (View) webView;
@@ -407,14 +400,13 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-/*		
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
-*/		
+
 		AdRequest.Builder builder = new AdRequest.Builder();
 		if(isTest) {
 			builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR); 
