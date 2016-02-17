@@ -396,14 +396,14 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	public void _preloadInterstitialAd() {
-try{		
+//try{		
 		interstitialAdPreload = true;
 
 		loadInterstitialAd();
-}
-catch(Exception ex){
-	Util.alert(plugin.getCordova().getActivity(),String.format("1: %s", ex.getMessage()));
-}		
+//}
+//catch(Exception ex){
+//	Util.alert(plugin.getCordova().getActivity(),String.format("1: %s", ex.getMessage()));
+//}		
 	}
 	
 	private void loadInterstitialAd() {
@@ -489,7 +489,7 @@ catch(Exception ex){
 	}
 
 	public void _showInterstitialAd() {
-try{		
+//try{		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
@@ -498,10 +498,10 @@ try{
 		else {
 			loadInterstitialAd();
 		}		
-}
-catch(Exception ex){
-	Util.alert(plugin.getCordova().getActivity(),String.format("2: %s", ex.getMessage()));
-}		
+//}
+//catch(Exception ex){
+//	Util.alert(plugin.getCordova().getActivity(),String.format("2: %s", ex.getMessage()));
+//}		
 	}
     
    //http://developer.android.com/reference/com/google/android/gms/ads/AdListener.html
