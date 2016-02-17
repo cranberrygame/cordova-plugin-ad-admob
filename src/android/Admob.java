@@ -158,12 +158,12 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		Log.d(LOG_TAG, String.format("%s", email));			
 		Log.d(LOG_TAG, String.format("%s", licenseKey));
 		
-		////cordova.getActivity().runOnUiThread(new Runnable() {
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 				_setLicenseKey(email, licenseKey);
-		////	}
-		////});
+			}
+		});
 	}
 	
 	private void setUp(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -208,12 +208,12 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		else
 			pluginDelegate = new AdmobSplit(this);
 		
-		////cordova.getActivity().runOnUiThread(new Runnable() {
-		////	@Override
-		////	public void run() {
+		cordova.getActivity().runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
 				_setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
-		////	}
-		////});
+			}
+		});
 	}
 	
 	private void preloadBannerAd(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
