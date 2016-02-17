@@ -125,6 +125,13 @@ public class AdmobOverlap implements PluginDelegate {
 		
 		lastOrientation = -1;		
 		handleLayoutChangeOverlap();
+		
+		if (interstitialView == null) {////
+			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
+			//
+			interstitialView.setAdUnitId(this.interstitialAdUnit);
+			interstitialView.setAdListener(new MyInterstitialViewListener());					
+		}		
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -400,13 +407,14 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
+/*		
 		if (interstitialView == null) {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
 			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
-		
+*/		
 		AdRequest.Builder builder = new AdRequest.Builder();
 		if(isTest) {
 			builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR); 
