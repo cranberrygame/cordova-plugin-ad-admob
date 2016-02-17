@@ -433,6 +433,7 @@ public class AdmobOverlap implements PluginDelegate {
    //http://developer.android.com/reference/com/google/android/gms/ads/AdListener.html
     class MyBannerViewListener extends AdListener {
 
+	@Override
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
 
@@ -452,15 +453,19 @@ public class AdmobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     	}
+	@Override    	
     	public void onAdFailedToLoad(int errorCode) {
     		Log.d(LOG_TAG, "onAdFailedToLoad");
     	}
+	@Override    	
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");//click and ad opened //onBannerAdShown x
     	}
+	@Override    	
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");//onBannerAdHidden x
     	}
+	@Override    	
     	public void onAdLeftApplication() {
     		Log.d(LOG_TAG, "onAdLeftApplication");
     	}
@@ -468,6 +473,7 @@ public class AdmobOverlap implements PluginDelegate {
 
     class MyInterstitialViewListener extends AdListener {
 
+	@Override
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
     		
@@ -491,15 +497,18 @@ public class AdmobOverlap implements PluginDelegate {
     			interstitialView.show();
     		}	
     	}
-		
+	
+	@Override		
     	public void onAdFailedToLoad(int errorCode) {
     		Log.d(LOG_TAG, "onAdFailedToLoad");
     	}
 		
+	@Override		
     	public void onAdLeftApplication() {
     		Log.d(LOG_TAG, "onAdLeftApplication");
     	}
-		
+	
+	@Override		
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");
     		
@@ -511,6 +520,7 @@ public class AdmobOverlap implements PluginDelegate {
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     	}
 		
+	@Override		
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");
 
