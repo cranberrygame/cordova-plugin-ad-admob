@@ -404,7 +404,69 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());					
+			//interstitialView.setAdListener(new MyInterstitialViewListener());
+			interstitialView.setAdListener(new MyInterstitialViewListener(){
+				
+				@Override
+			    	public void onAdLoaded() {
+			    		Log.d(LOG_TAG, "onAdLoaded");
+			    		
+			    		if(interstitialAdPreload) {
+			    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdPreloaded");
+			    			pr.setKeepCallback(true);
+			    			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+			    			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+			    			//pr.setKeepCallback(true);
+			    			//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+			    		}
+			    		
+			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdLoaded");
+			    		pr.setKeepCallback(true);
+			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+			    		//pr.setKeepCallback(true);
+			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
+			    		
+			    		if(!interstitialAdPreload) {
+			    			interstitialView.show();
+			    		}	
+			    	}
+				
+				@Override		
+			    	public void onAdFailedToLoad(int errorCode) {
+			    		Log.d(LOG_TAG, "onAdFailedToLoad");
+			    	}
+					
+				@Override		
+			    	public void onAdLeftApplication() {
+			    		Log.d(LOG_TAG, "onAdLeftApplication");
+			    	}
+				
+				@Override		
+			    	public void onAdOpened() {
+			    		Log.d(LOG_TAG, "onAdOpened");
+			    		
+			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
+			    		pr.setKeepCallback(true);
+			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+			    		//pr.setKeepCallback(true);
+			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
+			    	}
+					
+				@Override		
+			    	public void onAdClosed() {
+			    		Log.d(LOG_TAG, "onAdClosed");
+			
+			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
+			    		pr.setKeepCallback(true);
+			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
+			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
+			    		//pr.setKeepCallback(true);
+			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
+			    	}			
+				
+			});					
 		}		
 
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -471,6 +533,7 @@ public class AdmobOverlap implements PluginDelegate {
     	}
     }
 
+/*
     class MyInterstitialViewListener extends AdListener {
 
 	@Override
@@ -532,7 +595,7 @@ public class AdmobOverlap implements PluginDelegate {
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
     	}
     }
-
+*/
     public void onPause(boolean multitasking) {
 		if (bannerView != null) {
 		    bannerView.pause();
