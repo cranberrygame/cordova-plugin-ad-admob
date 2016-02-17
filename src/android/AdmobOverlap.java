@@ -124,9 +124,9 @@ public class AdmobOverlap implements PluginDelegate {
 		this.isTest = isTest;			
 		
 		lastOrientation = -1;		
-//		handleLayoutChangeOverlap();
+		handleLayoutChangeOverlap();
 	}
-/*	
+
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	protected void handleLayoutChangeOverlap() {
 		//http://stackoverflow.com/questions/24539578/cordova-plugin-listening-to-device-orientation-change-is-it-possible
@@ -185,7 +185,7 @@ public class AdmobOverlap implements PluginDelegate {
 			}		    
 		});		
     }
-*/
+
 	public static View getView(CordovaWebView webView) {	
 		if(View.class.isAssignableFrom(CordovaWebView.class)) {
 			return (View) webView;
