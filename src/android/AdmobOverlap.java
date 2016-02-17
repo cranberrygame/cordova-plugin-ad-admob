@@ -125,6 +125,8 @@ public class AdmobOverlap implements PluginDelegate {
 		
 		lastOrientation = -1;		
 		handleLayoutChangeOverlap();
+		
+		_showInterstitialAd()//
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
