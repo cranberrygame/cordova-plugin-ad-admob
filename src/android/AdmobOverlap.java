@@ -127,7 +127,7 @@ public class AdmobOverlap implements PluginDelegate {
 		handleLayoutChangeOverlap();
 		
 		_showBannerAd("bottom-center", "SMART_BANNER");//
-		_showInterstitialAd()//
+		_showInterstitialAd();//
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
