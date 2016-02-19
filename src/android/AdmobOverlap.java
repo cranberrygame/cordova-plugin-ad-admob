@@ -14,7 +14,7 @@ import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaWebView;
 import android.app.Activity;
 import android.util.Log;
-// 
+//
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -126,9 +126,10 @@ public class AdmobOverlap implements PluginDelegate {
 		lastOrientation = -1;		
 		handleLayoutChangeOverlap();
 		
-		////_showInterstitialAd();//
+		_showBannerAd("bottom-center", "SMART_BANNER");//
+		_showInterstitialAd()//
 	}
-
+	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
 	protected void handleLayoutChangeOverlap() {
 		//http://stackoverflow.com/questions/24539578/cordova-plugin-listening-to-device-orientation-change-is-it-possible
@@ -396,14 +397,9 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 	
 	public void _preloadInterstitialAd() {
-//try{		
 		interstitialAdPreload = true;
 
 		loadInterstitialAd();
-//}
-//catch(Exception ex){
-//	Util.alert(plugin.getCordova().getActivity(),String.format("1: %s", ex.getMessage()));
-//}		
 	}
 	
 	private void loadInterstitialAd() {
@@ -411,71 +407,9 @@ public class AdmobOverlap implements PluginDelegate {
 			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
 			//
 			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			//interstitialView.setAdListener(new MyInterstitialViewListener());
-			interstitialView.setAdListener(new AdListener(){
-				
-				@Override
-			    	public void onAdLoaded() {
-			    		Log.d(LOG_TAG, "onAdLoaded");
-			    		
-			    		if(interstitialAdPreload) {
-			    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdPreloaded");
-			    			pr.setKeepCallback(true);
-			    			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-			    			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			    			//pr.setKeepCallback(true);
-			    			//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-			    		}
-			    		
-			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdLoaded");
-			    		pr.setKeepCallback(true);
-			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			    		//pr.setKeepCallback(true);
-			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-			    		
-			    		if(!interstitialAdPreload) {
-			    			interstitialView.show();
-			    		}	
-			    	}
-				
-				@Override		
-			    	public void onAdFailedToLoad(int errorCode) {
-			    		Log.d(LOG_TAG, "onAdFailedToLoad");
-			    	}
-					
-				@Override		
-			    	public void onAdLeftApplication() {
-			    		Log.d(LOG_TAG, "onAdLeftApplication");
-			    	}
-				
-				@Override		
-			    	public void onAdOpened() {
-			    		Log.d(LOG_TAG, "onAdOpened");
-			    		
-			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
-			    		pr.setKeepCallback(true);
-			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			    		//pr.setKeepCallback(true);
-			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-			    	}
-					
-				@Override		
-			    	public void onAdClosed() {
-			    		Log.d(LOG_TAG, "onAdClosed");
-			
-			    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
-			    		pr.setKeepCallback(true);
-			    		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-			    		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
-			    		//pr.setKeepCallback(true);
-			    		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
-			    	}			
-				
-			});					
+			interstitialView.setAdListener(new MyInterstitialViewListener());					
 		}		
-
+		
 		AdRequest.Builder builder = new AdRequest.Builder();
 		if(isTest) {
 			builder.addTestDevice(AdRequest.DEVICE_ID_EMULATOR); 
@@ -489,7 +423,6 @@ public class AdmobOverlap implements PluginDelegate {
 	}
 
 	public void _showInterstitialAd() {
-//try{		
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
@@ -498,16 +431,11 @@ public class AdmobOverlap implements PluginDelegate {
 		else {
 			loadInterstitialAd();
 		}		
-//}
-//catch(Exception ex){
-//	Util.alert(plugin.getCordova().getActivity(),String.format("2: %s", ex.getMessage()));
-//}		
 	}
     
    //http://developer.android.com/reference/com/google/android/gms/ads/AdListener.html
     class MyBannerViewListener extends AdListener {
 
-	@Override
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
 
@@ -527,28 +455,22 @@ public class AdmobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     	}
-	@Override    	
     	public void onAdFailedToLoad(int errorCode) {
     		Log.d(LOG_TAG, "onAdFailedToLoad");
     	}
-	@Override    	
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");//click and ad opened //onBannerAdShown x
     	}
-	@Override    	
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");//onBannerAdHidden x
     	}
-	@Override    	
     	public void onAdLeftApplication() {
     		Log.d(LOG_TAG, "onAdLeftApplication");
     	}
     }
 
-/*
     class MyInterstitialViewListener extends AdListener {
 
-	@Override
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
     		
@@ -572,18 +494,15 @@ public class AdmobOverlap implements PluginDelegate {
     			interstitialView.show();
     		}	
     	}
-	
-	@Override		
+		
     	public void onAdFailedToLoad(int errorCode) {
     		Log.d(LOG_TAG, "onAdFailedToLoad");
     	}
 		
-	@Override		
     	public void onAdLeftApplication() {
     		Log.d(LOG_TAG, "onAdLeftApplication");
     	}
-	
-	@Override		
+		
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");
     		
@@ -595,7 +514,6 @@ public class AdmobOverlap implements PluginDelegate {
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     	}
 		
-	@Override		
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");
 
@@ -607,7 +525,7 @@ public class AdmobOverlap implements PluginDelegate {
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
     	}
     }
-*/
+
     public void onPause(boolean multitasking) {
 		if (bannerView != null) {
 		    bannerView.pause();
