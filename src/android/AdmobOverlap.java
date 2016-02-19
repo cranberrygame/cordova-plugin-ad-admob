@@ -126,8 +126,8 @@ public class AdmobOverlap implements PluginDelegate {
 		lastOrientation = -1;		
 		handleLayoutChangeOverlap();
 		
-		_showBannerAd("bottom-center", "SMART_BANNER");//
-		_showInterstitialAd();//
+		//_showBannerAd("bottom-center", "SMART_BANNER");//cocoon.io
+		//_showInterstitialAd();//cocoon.io
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
