@@ -128,6 +128,7 @@ public class AdmobOverlap implements PluginDelegate {
 		
 		//_showBannerAd("bottom-center", "SMART_BANNER");//cocoon.io
 		//_showInterstitialAd();//cocoon.io
+		_preloadBannerAd()//cocoon.io
 	}
 	
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
