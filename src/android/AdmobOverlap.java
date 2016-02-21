@@ -475,24 +475,24 @@ public class AdmobOverlap implements PluginDelegate {
     		Log.d(LOG_TAG, "onAdLoaded");
     		
     		if(interstitialAdPreload) {
-/*    			
+   			
     			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdPreloaded");
     			pr.setKeepCallback(true);
     			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     			//pr.setKeepCallback(true);
     			//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
-*/    			
+   			
     		}
     		
-/*    		
+   		
     		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdLoaded");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-*/
+
 
     		if(!interstitialAdPreload) {
     			interstitialView.show();
@@ -510,27 +510,27 @@ public class AdmobOverlap implements PluginDelegate {
     	public void onAdOpened() {
     		Log.d(LOG_TAG, "onAdOpened");
 
-/*    		
+   		
     		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
-*/    		
+   		
     	}
 		
     	public void onAdClosed() {
     		Log.d(LOG_TAG, "onAdClosed");
 
-/*
+
     		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);    		
-*/    		
+   		
     	}
     }
 
