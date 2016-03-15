@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-ad-admob"
-    version="1.0.106">
+    version="1.0.107">
 	
     <name>Cordova Admob plugin</name>
     <description>Show admob banner and interstitial ad</description>
@@ -32,7 +32,7 @@
         <source-file src="src/android/AdmobSplit.java" target-dir="src/com/cranberrygame/cordova/plugin/ad/admob" />
 		
 		<!-- dependency -->
-		<dependency id="cordova-plugin-ad-admobsdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admobsdk" />
+		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />
     </platform>
 
 	<!-- ios -->
@@ -52,7 +52,7 @@
 		<source-file src="src/ios/AdmobSplit.m" />
 
 		<!-- dependency -->
-		<dependency id="cordova-plugin-ad-admobsdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admobsdk" />
+		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />
 	</platform>
 	
     <!-- wp8 -->
@@ -69,7 +69,7 @@
 		<framework src="src/wp8/Silverlight.Md5.dll" custom="true" />		
 		
 		<!-- dependency -->
-		<dependency id="cordova-plugin-ad-admobsdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admobsdk" />
+		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />
     </platform>
 	
 	<!-- windows (wp8.1) --> <!-- not yet supported-->
