@@ -32,7 +32,9 @@
         <source-file src="src/android/AdmobSplit.java" target-dir="src/com/cranberrygame/cordova/plugin/ad/admob" />
 		
 		<!-- dependency -->
+<!--		
 		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />
+-->		
     </platform>
 
 	<!-- ios -->
