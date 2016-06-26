@@ -32,16 +32,7 @@
         <source-file src="src/android/AdmobSplit.java" target-dir="src/com/cranberrygame/cordova/plugin/ad/admob" />
 		
 		<!-- dependency -->
-<!--		
 		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />
--->
-
-    <config-file target="AndroidManifest.xml" parent="/manifest/application">
-        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-    </config-file>
-    <framework src="com.google.android.gms:play-services-games:9.0.2" />
-    <framework src="com.google.android.gms:play-services-plus:9.0.2" />
-    <framework src="com.google.android.gms:play-services-ads:9.0.2" />	
      </platform>
 
 	<!-- ios -->
