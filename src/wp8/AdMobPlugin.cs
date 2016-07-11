@@ -112,11 +112,11 @@ namespace Cordova.Extension.Commands
 
             if (isOverlap)
             {
-                pluginDelegate = new AdmobOverlap(this);
+                pluginDelegate = new AdMobOverlap(this);
             }
             else
             {
-                pluginDelegate = new AdmobSplit(this);
+                pluginDelegate = new AdMobSplit(this);
             }
 
             Deployment.Current.Dispatcher.BeginInvoke(() => 
@@ -173,7 +173,7 @@ namespace Cordova.Extension.Commands
            });		
         }
 	
-		//cranberrygame start: AdmobPluginDelegate
+		//cranberrygame start: AdMobPluginDelegate
 
 		public void _setLicenseKey(string email, string licenseKey) 
 		{
@@ -209,7 +209,7 @@ namespace Cordova.Extension.Commands
 				this.validLicenseKey = false;			
 			}
 			//if (!this.validLicenseKey)
-			//	Cranberrygame.Util.alert("Cordova Admob: invalid email / license key. You can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova");			
+			//	Cranberrygame.Util.alert("Cordova AdMob: invalid email / license key. You can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova");
 		}
 
         private void _setUp(string bannerAdUnit, string interstitialAdUnit, bool isOverlap, bool isTest) {
@@ -256,7 +256,7 @@ namespace Cordova.Extension.Commands
 			pluginDelegate._showInterstitialAd();
         }
 
-		//cranberrygame end: AdmobPluginDelegate
+		//cranberrygame end: AdMobPluginDelegate
     
 		//cranberrygame start: Plugin
 /*		
