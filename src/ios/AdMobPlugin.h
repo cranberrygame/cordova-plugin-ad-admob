@@ -30,7 +30,7 @@
 - (void) _showInterstitialAd;
 @end
 
-@interface Admob : CDVPlugin <Plugin, PluginDelegate>
+@interface AdMobPlugin : CDVPlugin <Plugin, PluginDelegate>
 
 @property NSString *callbackIdKeepCallback;
 //

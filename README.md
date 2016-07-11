@@ -86,6 +86,8 @@ You can see Cordova Plugins in one page: http://cranberrygame.github.io?referrer
     Fixed ios not working onInterstitialAdHidden event issue.
 1.0.103
     Updated AdMob iOS SDK v7.3.1
+1.0.108
+    Fixed cocoon.io android canvas+ issue.
 
 To-Do:
 

@@ -63,7 +63,7 @@ namespace Cranberrygame
 namespace Cordova.Extension.Commands 
 {
 
-    public class Admob : BaseCommand, Plugin
+    public class AdMobPlugin : BaseCommand, Plugin
     {
         //
         protected string CurrentCommandCallbackIdKeepCallback;

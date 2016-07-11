@@ -15,7 +15,7 @@ using System.Diagnostics; //Debug.WriteLine
 
 namespace Test {
 
-    public class AdmobSplit : AdmobOverlap 
+    public class AdMobSplit : AdMobOverlap 
 	{
         private double rootViewHeight = 0.0;
         private double rootViewWidth = 0.0;
@@ -23,7 +23,7 @@ namespace Test {
         private const int BANNER_HEIGHT_LANDSCAPE = 32;
         private RowDefinition rowDefinition = new RowDefinition { Height = GridLength.Auto };
 
-        public AdmobSplit(Plugin plugin_) : base(plugin_)
+        public AdMobSplit(Plugin plugin_) : base(plugin_)
         {
             PhoneApplicationFrame rootFrame = Application.Current.RootVisual as PhoneApplicationFrame;
             PhoneApplicationPage rootPage = rootFrame.Content as PhoneApplicationPage;

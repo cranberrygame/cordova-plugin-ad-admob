@@ -51,8 +51,8 @@ interface PluginDelegate {
     public void onDestroy();
 }
 
-public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
-	protected static final String LOG_TAG = "Admob";	
+public class AdMobPlugin extends CordovaPlugin implements PluginDelegate, Plugin {
+	protected static final String LOG_TAG = "AdMobPlugin";	
 	protected CallbackContext callbackContextKeepCallback;
 	//
 	protected PluginDelegate pluginDelegate;
@@ -204,9 +204,9 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		callbackContextKeepCallback = callbackContext;
 		
 		if(isOverlap)
-			pluginDelegate = new AdmobOverlap(this);
+			pluginDelegate = new AdMobOverlap(this);
 		else
-			pluginDelegate = new AdmobSplit(this);
+			pluginDelegate = new AdMobSplit(this);
 		
 		cordova.getActivity().runOnUiThread(new Runnable() {
 			@Override
@@ -291,7 +291,7 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 
 	//cranberrygame end: Plugin
 	
-	//cranberrygame start: AdmobPluginDelegate
+	//cranberrygame start: AdMobPluginDelegate
 
 	public void _setLicenseKey(String email, String licenseKey) {
 		//pluginDelegate._setLicenseKey(email, licenseKey);
@@ -361,5 +361,6 @@ public class Admob extends CordovaPlugin implements PluginDelegate, Plugin {
 		pluginDelegate._showInterstitialAd();
 	}
 
-	//cranberrygame end: AdmobPluginDelegate
+	//cranberrygame end: AdMobPluginDelegate
 }
+

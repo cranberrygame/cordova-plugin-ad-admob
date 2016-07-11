@@ -2,9 +2,9 @@
 //Email: cranberrygame@yahoo.com
 //Homepage: http://cranberrygame.github.io
 //License: MIT (http://opensource.org/licenses/MIT)
-#import "AdmobSplit.h"
+#import "AdMobSplit.h"
 
-@implementation AdmobSplit
+@implementation AdMobSplit
 
 - (BOOL) bannerIsShowingOverlap {
 	//

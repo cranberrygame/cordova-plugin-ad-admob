@@ -90,8 +90,8 @@ class Util {
     }
 }
 
-public class AdmobOverlap implements PluginDelegate {
-	protected static final String LOG_TAG = "AdmobOverlap";
+public class AdMobOverlap implements PluginDelegate {
+	protected static final String LOG_TAG = "AdMobOverlap";
 	protected Plugin plugin;	
 	//
 	protected String bannerAdUnit;
@@ -110,7 +110,7 @@ public class AdmobOverlap implements PluginDelegate {
 	protected AdView bannerView;
 	protected InterstitialAd interstitialView;
 	
-	public AdmobOverlap(Plugin plugin_) {
+	public AdMobOverlap(Plugin plugin_) {
 		plugin = plugin_;
 	}
 
@@ -544,3 +544,4 @@ public class AdmobOverlap implements PluginDelegate {
         }
     }
 }
+

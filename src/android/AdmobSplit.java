@@ -32,10 +32,10 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import com.google.android.gms.ads.AdView;
 
-public class AdmobSplit extends AdmobOverlap {
-	protected static final String LOG_TAG = "AdmobSplit";
+public class AdMobSplit extends AdMobOverlap {
+	protected static final String LOG_TAG = "AdMobSplit";
 	
-	public AdmobSplit(Plugin plugin_) {
+	public AdMobSplit(Plugin plugin_) {
 		super(plugin_);
 	}
 	
@@ -194,3 +194,4 @@ public class AdmobSplit extends AdmobOverlap {
 		}		
 	}	
 }
+

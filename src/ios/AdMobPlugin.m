@@ -2,13 +2,13 @@
 //Email: cranberrygame@yahoo.com
 //Homepage: http://cranberrygame.github.io
 //License: MIT (http://opensource.org/licenses/MIT)
-#import "Admob.h"
+#import "AdMobPlugin.h"
 //
-#import "AdmobOverlap.h"
-#import "AdmobSplit.h"
+#import "AdMobOverlap.h"
+#import "AdMobSplit.h"
 #import <CommonCrypto/CommonDigest.h> //md5
 
-@implementation Admob
+@implementation AdMobPlugin
 
 @synthesize callbackIdKeepCallback;
 //

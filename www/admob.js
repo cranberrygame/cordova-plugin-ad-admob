@@ -10,7 +10,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'setLicenseKey',			
             [email, licenseKey]
         ); 
@@ -97,7 +97,7 @@ module.exports = {
 			}, 
 			function (error) {
 			},
-            'Admob',
+            'AdMobPlugin',
             'setUp',			
             [bannerAdUnit, interstitialAdUnit, isOverlap, isTest]
         ); 
@@ -107,7 +107,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'preloadBannerAd',
             []
         ); 
@@ -117,7 +117,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'showBannerAd',
             [position, size]
         ); 
@@ -127,7 +127,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'reloadBannerAd',
             []
         ); 
@@ -137,7 +137,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'hideBannerAd',
             []
         ); 
@@ -149,7 +149,7 @@ module.exports = {
         cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'preloadInterstitialAd',
             []
         ); 
@@ -159,7 +159,7 @@ module.exports = {
 		cordova.exec(
             null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'showInterstitialAd',
             []
         ); 
@@ -171,18 +171,18 @@ module.exports = {
         cordova.exec(
 			null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'preloadInterstitialAd',
-            [location]
+            []
         ); 
     },
     showInterstitialAd: function() {
 		cordova.exec(
  			null,
             null,
-            'Admob',
+            'AdMobPlugin',
             'showInterstitialAd',
-            [location]
+            []
         ); 
     },	
 	loadedBannerAd: function() {

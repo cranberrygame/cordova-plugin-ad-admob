@@ -17,7 +17,7 @@ using GoogleAds;
 
 namespace Test {
 
-    public class AdmobOverlap : PluginDelegate
+    public class AdMobOverlap : PluginDelegate
     {
 		protected Plugin plugin;	
 		//
@@ -36,7 +36,7 @@ namespace Test {
         protected AdView bannerView;
         protected InterstitialAd interstitialView;
 
-        public AdmobOverlap(Plugin plugin_)
+        public AdMobOverlap(Plugin plugin_)
         {
 			plugin = plugin_;
 		}
