@@ -4,6 +4,6 @@
 //License: MIT (http://opensource.org/licenses/MIT)
 #include "AdMobOverlap.h"
 
-@interface AdMobSplit : AdmobOverlap
+@interface AdMobSplit : AdMobOverlap
 
 @end

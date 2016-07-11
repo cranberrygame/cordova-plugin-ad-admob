@@ -2,7 +2,7 @@
 //Email: cranberrygame@yahoo.com
 //Homepage: http://cranberrygame.github.io
 //License: MIT (http://opensource.org/licenses/MIT)
-#import "Admob.h"
+#import "AdMobPlugin.h"
 
 @interface AdMobOverlap : NSObject <PluginDelegate, GADBannerViewDelegate, GADInterstitialDelegate>
 
