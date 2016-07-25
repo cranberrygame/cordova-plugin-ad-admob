@@ -275,13 +275,15 @@ public class AdMobOverlap implements PluginDelegate {
 		this.bannerPreviousPosition = position;	
 		this.bannerPreviousSize = size;
 
-		addBannerViewOverlap(position, size);//fix cocoon.io issue.
-		
 		if(bannerAdPreload) {
 			bannerAdPreload = false;
+			
+			addBannerViewOverlap(position, size);//fix cocoon.io issue.			
 		}
 		else{
 			_hideBannerAd();
+
+			addBannerViewOverlap(position, size);//fix cocoon.io issue.
 		
 			loadBannerAd();
 		}
