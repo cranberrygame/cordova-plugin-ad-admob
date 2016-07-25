@@ -278,17 +278,17 @@ public class AdMobOverlap implements PluginDelegate {
 		if(bannerAdPreload) {
 			bannerAdPreload = false;
 			
-			addBannerViewOverlap(position, size);//fix cocoon.io issue.			
+			//addBannerViewOverlap(position, size);//fix cocoon.io issue.			
 		}
 		else{
 			_hideBannerAd();
 
-			addBannerViewOverlap(position, size);//fix cocoon.io issue.
+			//addBannerViewOverlap(position, size);//fix cocoon.io issue.
 		
 			loadBannerAd();
 		}
 
-		//addBannerViewOverlap(position, size);
+		addBannerViewOverlap(position, size);
 		
 		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onBannerAdShown");
 		pr.setKeepCallback(true);
@@ -369,6 +369,7 @@ public class AdMobOverlap implements PluginDelegate {
 			params.addRule(RelativeLayout.CENTER_HORIZONTAL);
 		}
 		
+/*		
 		//fix cocoon.io issue.
 		if (bannerView == null) {
 			//
@@ -402,7 +403,8 @@ public class AdMobOverlap implements PluginDelegate {
 				bannerView.setAdSize(AdSize.SMART_BANNER);
 			}		
 		}
-		
+*/
+
 		//bannerViewLayout.addView(bannerView, params);
 		bannerView.setLayoutParams(params);
 		bannerViewLayout.addView(bannerView);
