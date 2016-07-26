@@ -88,6 +88,8 @@ You can see Cordova Plugins in one page: http://cranberrygame.github.io?referrer
     Updated AdMob iOS SDK v7.3.1
 1.0.108
     Fixed cocoon.io android canvas+ issue.
+1.0.111
+    Fixed cocoon.io android canvas+ banner issue.
 
 To-Do:
 
