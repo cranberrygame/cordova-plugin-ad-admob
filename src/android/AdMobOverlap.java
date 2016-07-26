@@ -277,14 +277,10 @@ public class AdMobOverlap implements PluginDelegate {
 
 		if(bannerAdPreload) {
 			bannerAdPreload = false;
-			
-			//addBannerViewOverlap(position, size);//fix cocoon.io issue.			
 		}
 		else{
 			_hideBannerAd();
 
-			//addBannerViewOverlap(position, size);//fix cocoon.io issue.
-		
 			loadBannerAd();
 		}
 
@@ -368,43 +364,7 @@ public class AdMobOverlap implements PluginDelegate {
 			params.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 			params.addRule(RelativeLayout.CENTER_HORIZONTAL);
 		}
-		
-/*		
-		//fix cocoon.io issue.
-		if (bannerView == null) {
-			//
-			bannerView = new AdView(plugin.getCordova().getActivity());//
-			//
-			bannerView.setAdUnitId(this.bannerAdUnit);
-			bannerView.setAdListener(new MyBannerViewListener());		
-			//https://developers.google.com/mobile-ads-sdk/docs/admob/android/banner
-			if(bannerPreviousSize == null) {
-				bannerPreviousSize = "SMART_BANNER";
-			}
-			if (bannerPreviousSize.equals("BANNER")) {
-				bannerView.setAdSize(AdSize.BANNER);//Banner (320x50, Phones and Tablets)
-			} 
-			else if (bannerPreviousSize.equals("LARGE_BANNER")) {
-				bannerView.setAdSize(AdSize.LARGE_BANNER);//Large banner (320x100, Phones and Tablets)
-			}
-			else if (bannerPreviousSize.equals("MEDIUM_RECTANGLE")) {
-				bannerView.setAdSize(AdSize.MEDIUM_RECTANGLE);//Medium rectangle (300x250, Phones and Tablets)
-			}
-			else if (bannerPreviousSize.equals("FULL_BANNER")) {
-				bannerView.setAdSize(AdSize.FULL_BANNER);//Full banner (468x60, Tablets)
-			}
-			else if (bannerPreviousSize.equals("LEADERBOARD")) {
-				bannerView.setAdSize(AdSize.LEADERBOARD);//Leaderboard (728x90, Tablets)
-			}
-			else if (bannerPreviousSize.equals("SMART_BANNER")) {
-				bannerView.setAdSize(AdSize.SMART_BANNER);//Smart banner (Auto size, Phones and Tablets) //https://developers.google.com/mobile-ads-sdk/docs/admob/android/banner#smart
-			}
-			else {
-				bannerView.setAdSize(AdSize.SMART_BANNER);
-			}		
-		}
-*/
-
+	
 		//bannerViewLayout.addView(bannerView, params);
 		bannerView.setLayoutParams(params);
 		bannerViewLayout.addView(bannerView);
