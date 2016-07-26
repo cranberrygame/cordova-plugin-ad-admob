@@ -4,6 +4,7 @@ module.exports = {
 	_loadedInterstitialAd: false,
 	_isShowingBannerAd: false,
 	_isShowingInterstitialAd: false,
+	_fixCocoonIOCordovaAndroidAdMobIssue: false,
 	//
 	setLicenseKey: function(email, licenseKey) {
 		var self = this;	
@@ -29,6 +30,12 @@ module.exports = {
 						
 						if (self.onBannerAdLoaded)
 							self.onBannerAdLoaded();
+														
+//Cocoon & android
+if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !this._fixCocoonIOCordovaAndroidAdMobIssue) {
+	this.reloadBannerAd();
+	this._fixCocoonIOCordovaAndroidAdMobIssue=true;
+}							
 					}
 					else if (result == "onBannerAdShown") {
 						self._loadedBannerAd = false;
