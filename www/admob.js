@@ -32,13 +32,9 @@ module.exports = {
 							self.onBannerAdLoaded();
 														
 //fixCocoonIOCordovaAndroidAdMobIssue
-if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !this._fixCocoonIOCordovaAndroidAdMobIssue) {
-	//this.reloadBannerAd();
-	function r() {
-		this.reloadBannerAd();
-	}
-	setTimeout(r,500);
-	this._fixCocoonIOCordovaAndroidAdMobIssue=true;
+if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !self._fixCocoonIOCordovaAndroidAdMobIssue) {
+	self.reloadBannerAd();
+	self._fixCocoonIOCordovaAndroidAdMobIssue=true;
 }							
 					}
 					else if (result == "onBannerAdShown") {
