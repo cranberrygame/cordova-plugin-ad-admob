@@ -33,8 +33,8 @@ module.exports = {
 														
 //fixCocoonIOCordovaAndroidAdMobIssue
 if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !self._fixCocoonIOCordovaAndroidAdMobIssue) {
-	self.reloadBannerAd();
-//	self._fixCocoonIOCordovaAndroidAdMobIssue=true;
+//	self.reloadBannerAd();
+	self._fixCocoonIOCordovaAndroidAdMobIssue=true;
 }							
 					}
 					else if (result == "onBannerAdShown") {
