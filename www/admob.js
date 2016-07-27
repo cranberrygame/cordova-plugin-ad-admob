@@ -37,7 +37,7 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !th
 	function r() {
 		this.reloadBannerAd();
 	}
-	setTimeout(r,1000);
+	setTimeout(r,500);
 	this._fixCocoonIOCordovaAndroidAdMobIssue=true;
 }							
 					}
