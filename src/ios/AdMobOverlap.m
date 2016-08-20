@@ -21,11 +21,11 @@
 //
 @synthesize bannerAdPreload;	
 @synthesize interstitialAdPreload;
-@synthesize rewardedVideoAdPreload;
+@synthesize rewardedInterstitialAdPreload;
 //admob
 @synthesize bannerView;
-@synthesize interstitialView;
-@synthesize rewardedVideo;
+@synthesize interstitial;
+@synthesize rewardedInterstitial;
 
 /*
 - (CDVPlugin *) initWithWebView:(UIWebView *)theWebView {
@@ -77,7 +77,7 @@
 - (void) _setLicenseKey:(NSString *)email aLicenseKey:(NSString *)licenseKey {
 }
 
-- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedVideoAdUnit:(NSString *)rewardedVideoAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedInterstitialAdUnit:(NSString *)rewardedInterstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	self.bannerAdUnit = bannerAdUnit;
 	self.interstitialAdUnit = interstitialAdUnit;
 	self.isOverlap = isOverlap;
@@ -328,10 +328,10 @@
 }
 
 - (void) loadinterstitialAd {
-    if (interstitialView == nil || self.interstitialView.hasBeenUsed){//ios only //An interstitial object can only be used once for ios
-        self.interstitialView = [[GADInterstitial alloc] initWithAdUnitID: interstitialAdUnit];
+    if (interstitial == nil || self.interstitial.hasBeenUsed){//ios only //An interstitial object can only be used once for ios
+        self.interstitial = [[GADInterstitial alloc] initWithAdUnitID: interstitialAdUnit];
         //
-        self.interstitialView.delegate = self;
+        self.interstitial.delegate = self;
     }	
 	
 	GADRequest *request = [GADRequest request];
@@ -343,14 +343,14 @@
         [self md5:adid.UUIDString],
         nil];
     }
-	[self.interstitialView loadRequest:request];
+	[self.interstitial loadRequest:request];
 }
 
 - (void) _showInterstitialAd {
 	if(interstitialAdPreload) {
 		interstitialAdPreload = NO;
 
-		[self.interstitialView presentFromRootViewController:[self.plugin getViewController]];
+		[self.interstitial presentFromRootViewController:[self.plugin getViewController]];
 	}
 	else{	
 		[self loadinterstitialAd];
@@ -358,17 +358,17 @@
 }
 
 
-- (void) _preloadRewardedVideoAd {
-    rewardedVideoAdPreload = YES;
+- (void) _preloadRewardedInterstitialAd {
+    rewardedInterstitialAdPreload = YES;
     
-    [self loadRewardedVideoAd];
+    [self loadRewardedInterstitialAd];
 }
 
-- (void) loadRewardedVideoAd {
-    if (rewardedVideo == nil){
-        self.rewardedVideo = [GADRewardBasedVideoAd sharedInstance];
+- (void) loadRewardedInterstitialAd {
+    if (rewardedInterstitial == nil){
+        self.rewardedInterstitial = [GADRewardBasedVideoAd sharedInstance];
         //
-        self.rewardedVideo.delegate = self;
+        self.rewardedInterstitial.delegate = self;
     }	
 	
 	GADRequest *request = [GADRequest request];
@@ -380,17 +380,17 @@
         [self md5:adid.UUIDString],
         nil];
     }
-	[self.rewardedVideo loadRequest:request withAdUnitID:self.rewardedVideoAdUnit];
+	[self.rewardedInterstitial loadRequest:request withAdUnitID:self.rewardedInterstitialAdUnit];
 }
 
-- (void) _showRewardedVideoAd {
-    if(rewardedVideoAdPreload) {
-        rewardedVideoAdPreload = NO;
+- (void) _showRewardedInterstitialAd {
+    if(rewardedInterstitialAdPreload) {
+        rewardedInterstitialAdPreload = NO;
         
-        [rewardedVideo presentFromRootViewController:[plugin getViewController]];
+        [rewardedInterstitial presentFromRootViewController:[plugin getViewController]];
     }
     else {
-        [self loadRewardedVideoAd];
+        [self loadRewardedInterstitialAd];
     }
 }
 
@@ -461,7 +461,7 @@
 	//[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	
 	if(!interstitialAdPreload) {
-		[self.interstitialView presentFromRootViewController:[self.plugin getViewController]];
+		[self.interstitial presentFromRootViewController:[self.plugin getViewController]];
 	}
 }
 
@@ -504,7 +504,7 @@
 - (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidReceiveAd");
 
-	if(rewardedVideoAdPreload) {
+	if(rewardedInterstitialAdPreload) {
 		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdPreloaded"];
 		[pr setKeepCallbackAsBool:YES];
 		[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
@@ -520,8 +520,8 @@
 	//[pr setKeepCallbackAsBool:YES];
 	//[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	
-	if(!rewardedVideoAdPreload) {
-		[rewardedVideo presentFromRootViewController:[plugin getViewController]];
+	if(!rewardedInterstitialAdPreload) {
+		[rewardedInterstitial presentFromRootViewController:[plugin getViewController]];
 	}
 }
 

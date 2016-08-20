@@ -32,7 +32,7 @@ public interface Plugin
 public interface PluginDelegate
 {
     void _setLicenseKey(String email, String licenseKey);
-    void _setUp(String bannerAdUnit, String interstitialAdUnit, bool isOverlap, bool isTest);
+    void _setUp(String bannerAdUnit, String interstitialAdUnit, String rewardedInterstitialAdUnit, bool isOverlap, bool isTest);
     void _preloadBannerAd();
     void _showBannerAd(String position, String size);
     void _reloadBannerAd();
@@ -101,8 +101,9 @@ namespace Cordova.Extension.Commands
             //Debug.WriteLine("isTest: " + isTest);			
             string bannerAdUnit = JsonHelper.Deserialize<string[]>(args)[0];
             string interstitialAdUnit = JsonHelper.Deserialize<string[]>(args)[1];
-            bool isOverlap = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[2]);
-            bool isTest = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[3]);
+            string rewardedInterstitialAdUnit = JsonHelper.Deserialize<string[]>(args)[2];			
+            bool isOverlap = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[3]);
+            bool isTest = Convert.ToBoolean(JsonHelper.Deserialize<string[]>(args)[4]);
             Debug.WriteLine("bannerAdUnit: " + bannerAdUnit);
             Debug.WriteLine("interstitialAdUnit: " + interstitialAdUnit);
             Debug.WriteLine("isOverlap: " + isOverlap);
@@ -121,7 +122,7 @@ namespace Cordova.Extension.Commands
 
             Deployment.Current.Dispatcher.BeginInvoke(() => 
 			{   
-                _setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
+                _setUp(bannerAdUnit, interstitialAdUnit, rewardedInterstitialAdUnit, isOverlap, isTest);
             });					
         }
 		
@@ -212,7 +213,7 @@ namespace Cordova.Extension.Commands
 			//	Cranberrygame.Util.alert("Cordova AdMob: invalid email / license key. You can get free license key from https://play.google.com/store/apps/details?id=com.cranberrygame.pluginsforcordova");
 		}
 
-        private void _setUp(string bannerAdUnit, string interstitialAdUnit, bool isOverlap, bool isTest) {
+        private void _setUp(string bannerAdUnit, string interstitialAdUnit, bool rewardedInterstitialAdUnit, bool isOverlap, bool isTest) {
 
 			if (!validLicenseKey) 
 			{
@@ -223,7 +224,7 @@ namespace Cordova.Extension.Commands
 				}
 			}
 
-			pluginDelegate._setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
+			pluginDelegate._setUp(bannerAdUnit, interstitialAdUnit, rewardedInterstitialAdUnit, isOverlap, isTest);
         }
 		
         private void _preloadBannerAd() 

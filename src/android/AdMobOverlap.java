@@ -100,7 +100,7 @@ public class AdMobOverlap implements PluginDelegate {
 	//
 	protected String bannerAdUnit;
 	protected String interstitialAdUnit;
-	protected String rewardedVideoAdUnit;
+	protected String rewardedInterstitialAdUnit;
 	protected boolean isOverlap;
 	protected boolean isTest;
 	//
@@ -110,12 +110,12 @@ public class AdMobOverlap implements PluginDelegate {
 	//
 	protected boolean bannerAdPreload;	
 	protected boolean interstitialAdPreload;
-	protected boolean rewardedVideoAdPreload;	
+	protected boolean rewardedInterstitialAdPreload;	
 	//admob
 	protected RelativeLayout bannerViewLayout;
 	protected AdView bannerView;
-	protected InterstitialAd interstitialView;
-	protected RewardedVideoAd rewardedVideo;
+	protected InterstitialAd interstitial;
+	protected RewardedVideoAd rewardedInterstitial;
 	
 	public AdMobOverlap(Plugin plugin_) {
 		plugin = plugin_;
@@ -124,10 +124,10 @@ public class AdMobOverlap implements PluginDelegate {
 	public void _setLicenseKey(String email, String licenseKey) {
 	}
 	
-	public void _setUp(String bannerAdUnit, String interstitialAdUnit, String rewardedVideoAdUnit, boolean isOverlap, boolean isTest) {
+	public void _setUp(String bannerAdUnit, String interstitialAdUnit, String rewardedInterstitialAdUnit, boolean isOverlap, boolean isTest) {
 		this.bannerAdUnit = bannerAdUnit;
 		this.interstitialAdUnit = interstitialAdUnit;
-		this.rewardedVideoAdUnit = rewardedVideoAdUnit;		
+		this.rewardedInterstitialAdUnit = rewardedInterstitialAdUnit;		
 		this.isOverlap = isOverlap;
 		this.isTest = isTest;			
 		
@@ -412,11 +412,11 @@ public class AdMobOverlap implements PluginDelegate {
 	}
 	
 	private void loadInterstitialAd() {
-		if (interstitialView == null) {
-			interstitialView = new InterstitialAd(plugin.getCordova().getActivity());
+		if (interstitial == null) {
+			interstitial = new InterstitialAd(plugin.getCordova().getActivity());
 			//
-			interstitialView.setAdUnitId(this.interstitialAdUnit);
-			interstitialView.setAdListener(new MyInterstitialViewListener());					
+			interstitial.setAdUnitId(this.interstitialAdUnit);
+			interstitial.setAdListener(new MyInterstitialListener());					
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -428,33 +428,33 @@ public class AdMobOverlap implements PluginDelegate {
 			builder.addTestDevice(deviceId);		
 		}
 		AdRequest request = builder.build();			
-		interstitialView.loadAd(request);		
+		interstitial.loadAd(request);		
 	}
 
 	public void _showInterstitialAd() {
 		if(interstitialAdPreload) {
 			interstitialAdPreload = false;
 
-			interstitialView.show();
+			interstitial.show();
 		}
 		else {
 			loadInterstitialAd();
 		}		
 	}
     
-	public void _preloadRewardedVideoAd() {
-		rewardedVideoAdPreload = true;
+	public void _preloadRewardedInterstitialAd() {
+		rewardedInterstitialAdPreload = true;
 
-		loadRewardedVideoAd();
+		loadRewardedInterstitialAd();
 	}
 	
-	public void loadRewardedVideoAd() {
-		if (rewardedVideo == null) {
-			//rewardedVideo = new RewardedVideoAd(plugin.getCordova().getActivity());
-			rewardedVideo = MobileAds.getRewardedVideoAdInstance(plugin.getCordova().getActivity());
+	public void loadRewardedInterstitialAd() {
+		if (rewardedInterstitial == null) {
+			//rewardedInterstitial = new RewardedInterstitialAd(plugin.getCordova().getActivity());
+			rewardedInterstitial = MobileAds.getRewardedInterstitialAdInstance(plugin.getCordova().getActivity());
 			//
-			//rewardedVideo.setAdUnitId(this.rewardedVideoAdUnit);
-			rewardedVideo.setRewardedVideoAdListener(new MyRewardedVideoAdListener());	
+			//rewardedInterstitial.setAdUnitId(this.rewardedInterstitialAdUnit);
+			rewardedInterstitial.setRewardedVideoAdListener(new MyRewardedInterstitialListener());	
 		}		
 		
 		AdRequest.Builder builder = new AdRequest.Builder();
@@ -466,17 +466,17 @@ public class AdMobOverlap implements PluginDelegate {
 			builder.addTestDevice(deviceId);		
 		}
 		AdRequest request = builder.build();			
-		rewardedVideo.loadAd(this.rewardedVideoAdUnit, request);		
+		rewardedInterstitial.loadAd(this.rewardedInterstitialAdUnit, request);		
 	}
 	
-	public void _showRewardedVideoAd() {
-		if(rewardedVideoAdPreload) {
-			rewardedVideoAdPreload = false;
+	public void _showRewardedInterstitialAd() {
+		if(rewardedInterstitialAdPreload) {
+			rewardedInterstitialAdPreload = false;
 
-			rewardedVideo.show();
+			rewardedInterstitial.show();
 		}
 		else {
-			loadRewardedVideoAd();
+			loadRewardedInterstitialAd();
 		}		
 	}
 	
@@ -516,7 +516,7 @@ public class AdMobOverlap implements PluginDelegate {
     	}
     }
 
-    class MyInterstitialViewListener extends AdListener {
+    class MyInterstitialListener extends AdListener {
 
     	public void onAdLoaded() {
     		Log.d(LOG_TAG, "onAdLoaded");
@@ -538,7 +538,7 @@ public class AdMobOverlap implements PluginDelegate {
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     		
     		if(!interstitialAdPreload) {
-    			interstitialView.show();
+    			interstitial.show();
     		}	
     	}
 		
@@ -573,7 +573,7 @@ public class AdMobOverlap implements PluginDelegate {
     	}
     }
 
-	class MyRewardedVideoAdListener implements RewardedVideoAdListener {
+	class MyRewardedInterstitialListener implements RewardedVideoAdListener {
 		
 		@Override
 		public void onRewardedVideoAdFailedToLoad(int errorCode) {
@@ -584,7 +584,7 @@ public class AdMobOverlap implements PluginDelegate {
 		public void onRewardedVideoAdLoaded() {
 			Log.d(LOG_TAG, String.format("%s", "onRewardedVideoAdLoaded"));
 		  
-    		if(rewardedVideoAdPreload) {
+    		if(rewardedInterstitialAdPreload) {
     			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdPreloaded");
     			pr.setKeepCallback(true);
     			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
@@ -600,8 +600,8 @@ public class AdMobOverlap implements PluginDelegate {
     		//pr.setKeepCallback(true);
     		//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);		
     		
-    		if(!rewardedVideoAdPreload) {
-				rewardedVideo.show();
+    		if(!rewardedInterstitialAdPreload) {
+				rewardedInterstitial.show();
     		}		  
 		}
 

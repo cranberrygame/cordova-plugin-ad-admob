@@ -23,6 +23,7 @@ namespace Test {
 		//
         protected string bannerAdUnit;
         protected string interstitialAdUnit;
+        protected string rewardedInterstitialAdUnit;
         protected bool isOverlap;
         protected bool isTest;
 		//
@@ -34,7 +35,7 @@ namespace Test {
         protected bool fullScreenAdPreload;
 		//admob
         protected AdView bannerView;
-        protected InterstitialAd interstitialView;
+        protected InterstitialAd interstitial;
 
         public AdMobOverlap(Plugin plugin_)
         {
@@ -44,10 +45,11 @@ namespace Test {
         public void _setLicenseKey(string email, string licenseKey) {
         }
 
-        public void _setUp(string bannerAdUnit, string interstitialAdUnit, bool isOverlap, bool isTest)
+        public void _setUp(string bannerAdUnit, string interstitialAdUnit, bool rewardedInterstitialAdUnit, bool isOverlap, bool isTest)
         {
 			this.bannerAdUnit = bannerAdUnit;
 			this.interstitialAdUnit = interstitialAdUnit;
+			this.rewardedInterstitialAdUnit = rewardedInterstitialAdUnit;			
 			this.isOverlap = isOverlap;
 			this.isTest = isTest;
         }
@@ -325,16 +327,16 @@ namespace com.cranberrygame.adrotatortest
 		
 		protected void loadinterstitialAd() 
 		{
-            //if (interstitialView == null) //need to comment on wp8
+            //if (interstitial == null) //need to comment on wp8
 			//{
-                //interstitialView = new InterstitialAd("ca-app-pub-4906074177432504/4879304879");//x cf) wp8
-                //interstitialView = new InterstitialAd("ca-app-pub-4906074177432504/5150650074");//o cf) android
-                interstitialView = new InterstitialAd(this.interstitialAdUnit);
+                //interstitial = new InterstitialAd("ca-app-pub-4906074177432504/4879304879");//x cf) wp8
+                //interstitial = new InterstitialAd("ca-app-pub-4906074177432504/5150650074");//o cf) android
+                interstitial = new InterstitialAd(this.interstitialAdUnit);
 				//http://forums.xamarin.com/discussion/849/binding-library-for-inneractive-sdk
-                interstitialView.ReceivedAd += interstitialView_ReceivedAd;
-                interstitialView.FailedToReceiveAd += interstitialView_FailedToReceiveAd;
-                interstitialView.ShowingOverlay += interstitialView_ShowingOverlay;
-				interstitialView.DismissingOverlay += interstitialView_DismissingOverlay;
+                interstitial.ReceivedAd += interstitial_ReceivedAd;
+                interstitial.FailedToReceiveAd += interstitial_FailedToReceiveAd;
+                interstitial.ShowingOverlay += interstitial_ShowingOverlay;
+				interstitial.DismissingOverlay += interstitial_DismissingOverlay;
             //}
 						
 			AdRequest adRequest = new AdRequest();
@@ -342,7 +344,7 @@ namespace com.cranberrygame.adrotatortest
 			{
 				adRequest.ForceTesting = true;
 			}				
-			interstitialView.LoadAd(adRequest);
+			interstitial.LoadAd(adRequest);
 		}
 
         public void _showInterstitialAd()
@@ -354,7 +356,7 @@ namespace com.cranberrygame.adrotatortest
 				//An exception of type 'System.NullReferenceException' occurred in GoogleAds.DLL and wasn't handled before a managed/native boundary
                 try 
 				{
-                    interstitialView.ShowAd();
+                    interstitial.ShowAd();
                 }
                 catch (Exception ex) 
 				{
@@ -410,9 +412,9 @@ namespace com.cranberrygame.adrotatortest
             Debug.WriteLine("BannerView_DismissingOverlay");//onBannerAdHidden x
         }		
 		
-        protected void interstitialView_ReceivedAd(object sender, AdEventArgs e) 
+        protected void interstitial_ReceivedAd(object sender, AdEventArgs e) 
 		{
-            Debug.WriteLine("interstitialView_ReceivedAd");
+            Debug.WriteLine("interstitial_ReceivedAd");
 
             PluginResult pr;
 			if (fullScreenAdPreload) 
@@ -434,18 +436,18 @@ namespace com.cranberrygame.adrotatortest
 				
 			if (!fullScreenAdPreload) 
 			{
-				interstitialView.ShowAd();
+				interstitial.ShowAd();
 			}
         }
 		
-        protected void interstitialView_FailedToReceiveAd(object sender, AdErrorEventArgs errorCode) 
+        protected void interstitial_FailedToReceiveAd(object sender, AdErrorEventArgs errorCode) 
 		{
-            Debug.WriteLine("interstitialView_FailedToReceiveAd " + errorCode.ErrorCode);
+            Debug.WriteLine("interstitial_FailedToReceiveAd " + errorCode.ErrorCode);
         }
 		
-        protected void interstitialView_ShowingOverlay(object sender, AdEventArgs e) 
+        protected void interstitial_ShowingOverlay(object sender, AdEventArgs e) 
 		{
-            Debug.WriteLine("OnInterstitialViewPresentScreen");
+            Debug.WriteLine("OnInterstitialPresentScreen");
 
             PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdShown");
 			pr.KeepCallback = true;
@@ -455,9 +457,9 @@ namespace com.cranberrygame.adrotatortest
             //plugin.DispatchCommandResult(pr);			
         }
 		
-        protected void interstitialView_DismissingOverlay(object sender, AdEventArgs e) 
+        protected void interstitial_DismissingOverlay(object sender, AdEventArgs e) 
 		{
-            Debug.WriteLine("interstitialView_DismissingOverlay");
+            Debug.WriteLine("interstitial_DismissingOverlay");
 
             PluginResult pr = new PluginResult(PluginResult.Status.OK, "onInterstitialAdHidden");
 			pr.KeepCallback = true;

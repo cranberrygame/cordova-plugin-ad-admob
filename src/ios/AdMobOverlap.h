@@ -10,7 +10,7 @@
 //
 @property NSString *bannerAdUnit;
 @property NSString *interstitialAdUnit;
-@property NSString *rewardedVideoAdUnit;
+@property NSString *rewardedInterstitialAdUnit;
 @property BOOL isOverlap;
 @property BOOL isTest;
 //
@@ -20,11 +20,11 @@
 //
 @property BOOL bannerAdPreload;	
 @property BOOL interstitialAdPreload;	
-@property BOOL rewardedVideoAdPreload;
+@property BOOL rewardedInterstitialAdPreload;
 //admob
 @property GADBannerView *bannerView;
-@property GADInterstitial *interstitialView;
-@property GADRewardBasedVideoAd *rewardedVideo;
+@property GADInterstitial *interstitial;
+@property GADRewardBasedVideoAd *rewardedInterstitial;
 
 - (id) initWithPlugin:(id<Plugin>)plugin_;
 

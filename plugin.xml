@@ -2,10 +2,10 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-ad-admob"
-    version="1.0.113">
+    version="1.0.114">
 	
     <name>Cordova AdMob plugin</name>
-    <description>Show admob banner and interstitial ad</description>
+    <description>Show admob banner, interstitial and rewarded interstitial ad</description>
     <author>Sang Ki Kwon (Cranberrygame)</author>		
     <license>MIT</license>
     <keywords>cordova,plugin,ad,admob,monetisation</keywords>
@@ -64,8 +64,8 @@
         </config-file>
 
         <source-file src="src/wp8/AdMobPlugin.cs" />
-        <source-file src="src/wp8/AdmobOverlap.cs" />
-        <source-file src="src/wp8/AdmobSplit.cs" />
+        <source-file src="src/wp8/AdMobOverlap.cs" />
+        <source-file src="src/wp8/AdMobSplit.cs" />
 		<framework src="src/wp8/Silverlight.Md5.dll" custom="true" />		
 		
 		<!-- dependency -->
