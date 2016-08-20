@@ -50,8 +50,9 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
     //NSLog(@"%d", isTest);
     NSString *bannerAdUnit = [command.arguments objectAtIndex: 0];
     NSString *interstitialAdUnit = [command.arguments objectAtIndex: 1];
-    BOOL isOverlap = [[command.arguments objectAtIndex: 2] boolValue];
-    BOOL isTest = [[command.arguments objectAtIndex: 3] boolValue];
+    NSString *rewardedVideoAdUnit = [command.arguments objectAtIndex: 2];
+    BOOL isOverlap = [[command.arguments objectAtIndex: 3] boolValue];
+    BOOL isTest = [[command.arguments objectAtIndex: 4] boolValue];
     NSLog(@"%@", bannerAdUnit);
     NSLog(@"%@", interstitialAdUnit);
     NSLog(@"%d", isOverlap);
@@ -65,7 +66,7 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
         pluginDelegate = [[AdMobSplit alloc] initWithPlugin:self];
     
     //[self.commandDelegate runInBackground:^{
-        [self _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit anIsOverlap:isOverlap anIsTest:isTest];
+        [self _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit aRewardedVideoAdUnit:rewardedVideoAdUnit anIsOverlap:isOverlap anIsTest:isTest];
     //}];
 }
 
@@ -106,6 +107,18 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
 - (void) showInterstitialAd: (CDVInvokedUrlCommand*)command {
     //[self.commandDelegate runInBackground:^{
 		[self _showInterstitialAd];
+    //}];
+}
+
+- (void) preloadRewardedVideoAd: (CDVInvokedUrlCommand*)command {
+    //[self.commandDelegate runInBackground:^{
+        [self _preloadRewardedVideoAd];
+    //}];
+}
+
+- (void) showRewardedVideoAd: (CDVInvokedUrlCommand*)command {
+    //[self.commandDelegate runInBackground:^{
+        [self _showRewardedVideoAd];
     //}];
 }
 
@@ -176,7 +189,7 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
 	return  output;
 }
 
-- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedVideoAdUnit:(NSString *)rewardedVideoAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	if (!validLicenseKey) {
 		if (arc4random() % 100 <= 1) {//0 ~ 99			
 			bannerAdUnit = TEST_BANNER_AD_UNIT;
@@ -184,7 +197,7 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
 		}
 	}
 	
-	[pluginDelegate _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit anIsOverlap:isOverlap anIsTest:isTest];
+	[pluginDelegate _setUp:bannerAdUnit anInterstitialAdUnit:interstitialAdUnit aRewardedVideoAdUnit:rewardedVideoAdUnit anIsOverlap:isOverlap anIsTest:isTest];
 }
 		
 - (void) _preloadBannerAd {
@@ -209,6 +222,14 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
 
 - (void) _showInterstitialAd {
 	[pluginDelegate _showInterstitialAd];	
+}
+
+- (void) _preloadRewardedVideoAd {
+    [pluginDelegate _preloadRewardedVideoAd];
+}
+
+- (void) _showRewardedVideoAd {
+    [pluginDelegate _showRewardedVideoAd];
 }
 
 //cranberrygame end: PluginDelegate

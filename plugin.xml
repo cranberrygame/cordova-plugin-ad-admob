@@ -2,7 +2,7 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-ad-admob"
-    version="1.0.112">
+    version="1.0.113">
 	
     <name>Cordova AdMob plugin</name>
     <description>Show admob banner and interstitial ad</description>
@@ -46,10 +46,10 @@
 		
 		<header-file src="src/ios/AdMobPlugin.h" />
 		<source-file src="src/ios/AdMobPlugin.m" />
-		<header-file src="src/ios/AdmobOverlap.h" />
-		<source-file src="src/ios/AdmobOverlap.m" />
-		<header-file src="src/ios/AdmobSplit.h" />
-		<source-file src="src/ios/AdmobSplit.m" />
+		<header-file src="src/ios/AdMobOverlap.h" />
+		<source-file src="src/ios/AdMobOverlap.m" />
+		<header-file src="src/ios/AdMobSplit.h" />
+		<source-file src="src/ios/AdMobSplit.m" />
 
 		<!-- dependency -->
 		<dependency id="cordova-plugin-ad-admob-sdk" url="https://github.com/cranberrygame/cordova-plugin-ad-admob-sdk" />

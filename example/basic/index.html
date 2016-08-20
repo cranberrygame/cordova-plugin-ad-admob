@@ -8,28 +8,38 @@
 
 var bannerAdUnit = "ca-app-pub-4906074177432504/9172302471";
 var interstitialAdUnit = "ca-app-pub-4906074177432504/1649035673";
+var rewardedVideoAdUnit = "ca-app-pub-4906074177432504/5071157273";
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 /*
 var bannerAdUnit;
 var interstitialAdUnit;
+var rewardedVideoAdUnit;
 var isOverlap = true; //true: overlap, false: split
 var isTest = true;
 //android
 if (navigator.userAgent.match(/Android/i)) {
 	bannerAdUnit = "ca-app-pub-4906074177432504/9172302471";
 	interstitialAdUnit = "ca-app-pub-4906074177432504/1649035673";
+	rewardedVideoAdUnit = "ca-app-pub-4906074177432504/5071157273";
 }
 //ios
 else if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i)) {
 	bannerAdUnit = "ca-app-pub-4906074177432504/4602502071";
 	interstitialAdUnit = "ca-app-pub-4906074177432504/7555968477";
+	rewardedVideoAdUnit = "ca-app-pub-4906074177432504/8024623671";
+}
+//wp8
+else if( navigator.userAgent.match(/Windows Phone/i) ) {
+	bannerAdUnit = "ca-app-pub-4906074177432504/4462901274";
+	interstitialAdUnit = "ca-app-pub-4906074177432504/5939634477";
+	rewardedVideoAdUnit = "";
 }
 */
 
 document.addEventListener("deviceready", function(){
 
-	window.admob.setUp(bannerAdUnit, interstitialAdUnit, isOverlap, isTest);
+	window.admob.setUp(bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest);
 
 	//
 	window.admob.onBannerAdPreloaded = function() {
@@ -57,6 +67,22 @@ document.addEventListener("deviceready", function(){
 	window.admob.onInterstitialAdHidden = function() {
 		alert('onInterstitialAdHidden');
 	};
+	//
+	window.admob.onRewardedVideoAdPreloaded = function() {
+		alert('onRewardedVideoAdPreloaded');
+	};
+	window.admob.onRewardedVideoAdLoaded = function() {
+		alert('onRewardedVideoAdLoaded');
+	};
+	window.admob.onRewardedVideoAdShown = function() {
+		alert('onRewardedVideoAdShown');
+	};
+	window.admob.onRewardedVideoAdHidden = function() {
+		alert('onRewardedVideoAdHidden');
+	};
+	window.admob.onRewardedVideoAdCompleted = function() {
+		alert('onRewardedVideoAdCompleted');
+	};
 }, false);
 	
 /*
@@ -79,12 +105,15 @@ size: 	'BANNER' (320x50, Phones and Tablets)
 <br>
 <p><button onclick="window.admob.preloadInterstitialAd();">preloadInterstitialAd</button></p>
 <p><button onclick="window.admob.showInterstitialAd();">showInterstitialAd</button></p>
+<p><button onclick="window.admob.showRewardedVideoAd();">showRewardedVideoAd</button></p>
 <br>
 <p><button onclick="alert(window.admob.loadedBannerAd());">loadedBannerAd</button></p>
 <p><button onclick="alert(window.admob.loadedInterstitialAd());">loadedInterstitialAd</button></p>
+<p><button onclick="alert(window.admob.loadedRewardedVideoAd());">loadedRewardedVideoAd</button></p>
 <br>
 <p><button onclick="alert(window.admob.isShowingBannerAd());">isShowingBannerAd</button></p>
 <p><button onclick="alert(window.admob.isShowingInterstitialAd());">isShowingInterstitialAd</button></p>
+<p><button onclick="alert(window.admob.isShowingRewardedVideoAd());">isShowingRewardedVideoAd</button></p>
 
 </body>
 </html>

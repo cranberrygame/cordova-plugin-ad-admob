@@ -2,8 +2,10 @@
 module.exports = {
 	_loadedBannerAd: false,
 	_loadedInterstitialAd: false,
+	_loadedRewardedVideoAd: false,	
 	_isShowingBannerAd: false,
 	_isShowingInterstitialAd: false,
+	_isShowingRewardedVideoAd: false,	
 	_fixCocoonIOCordovaAndroidAdMobIssue: false,
 	//
 	setLicenseKey: function(email, licenseKey) {
@@ -16,8 +18,13 @@ module.exports = {
             [email, licenseKey]
         ); 
     },
-	setUp: function(bannerAdUnit, interstitialAdUnit, isOverlap, isTest) {
-		var self = this;	
+	setUp: function(bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest) {
+        if (typeof isTest == 'undefined') {
+            isOverlap=rewardedVideoAdUnit;
+            isTest=isOverlap;
+        }
+        
+		var self = this;
         cordova.exec(
             function (result) {
 				if (typeof result == "string") {
@@ -92,6 +99,34 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 						 if (self.onInterstitialAdHidden)
 							self.onInterstitialAdHidden();
 					}
+					//
+					else if (event == "onRewardedVideoAdPreloaded") {
+						if (self.onRewardedVideoAdPreloaded)
+							self.onRewardedVideoAdPreloaded();
+					}
+					else if (event == "onRewardedVideoAdLoaded") {
+						self._loadedRewardedVideoAd = true;
+
+						if (self.onRewardedVideoAdLoaded)
+							self.onRewardedVideoAdLoaded();
+					}
+					else if (event == "onRewardedVideoAdShown") {
+						self._loadedRewardedVideoAd = false;
+						self._isShowingRewardedVideoAd = true;
+					
+						if (self.onRewardedVideoAdShown)
+							self.onRewardedVideoAdShown();
+					}
+					else if (event == "onRewardedVideoAdHidden") {
+						self._isShowingRewardedVideoAd = false;
+					
+						 if (self.onRewardedVideoAdHidden)
+							self.onRewardedVideoAdHidden();
+					}
+					else if (event == "onRewardedVideoAdCompleted") {
+						if (self.onRewardedVideoAdCompleted)
+							self.onRewardedVideoAdCompleted();
+					}					
 				}
 				else {
 					//var event = result["event"];
@@ -106,7 +141,7 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 			},
             'AdMobPlugin',
             'setUp',			
-            [bannerAdUnit, interstitialAdUnit, isOverlap, isTest]
+            [bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest]
         ); 
     },
 	preloadBannerAd: function() {
@@ -191,6 +226,25 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
             'showInterstitialAd',
             []
         ); 
+    },
+	//
+	preloadRewardedVideoAd: function() {
+        cordova.exec(
+			null,
+            null,
+            'AdMobPlugin',
+            'preloadRewardedVideoAd',
+            []
+        ); 
+    },
+    showRewardedVideoAd: function() {
+		cordova.exec(
+			null,
+            null,
+            'AdMobPlugin',
+            'showRewardedVideoAd',
+            []
+        ); 
     },	
 	loadedBannerAd: function() {
 		return this._loadedBannerAd;
@@ -203,6 +257,9 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	loadedInterstitialAd: function() {
 		return this._loadedInterstitialAd;
 	},
+	loadedRewardedVideoAd: function() {
+		return this._loadedRewardedVideoAd;
+	},	
 	isShowingBannerAd: function() {
 		return this._isShowingBannerAd;
 	},
@@ -214,6 +271,9 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	isShowingInterstitialAd: function() {
 		return this._isShowingInterstitialAd;
 	},
+	isShowingRewardedVideoAd: function() {
+		return this._isShowingRewardedVideoAd;
+	},	
 	onBannerAdPreloaded: null,
 	onBannerAdLoaded: null,
 	onBannerAdShown: null,
@@ -229,5 +289,11 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	onInterstitialAdPreloaded: null,
 	onInterstitialAdLoaded: null,
 	onInterstitialAdShown: null,
-	onInterstitialAdHidden: null
+	onInterstitialAdHidden: null,
+	//
+	onRewardedVideoAdPreloaded: null,
+	onRewardedVideoAdLoaded: null,
+	onRewardedVideoAdShown: null,
+	onRewardedVideoAdHidden: null,
+	onRewardedVideoAdCompleted: null
 };
