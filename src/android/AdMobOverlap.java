@@ -450,8 +450,8 @@ public class AdMobOverlap implements PluginDelegate {
 	
 	public void loadRewardedInterstitialAd() {
 		if (rewardedInterstitial == null) {
-			//rewardedInterstitial = new RewardedInterstitialAd(plugin.getCordova().getActivity());
-			rewardedInterstitial = MobileAds.getRewardedInterstitialAdInstance(plugin.getCordova().getActivity());
+			//rewardedInterstitial = new RewardedVideoAd(plugin.getCordova().getActivity());
+			rewardedInterstitial = MobileAds.getRewardedVideoAdInstance(plugin.getCordova().getActivity());
 			//
 			//rewardedInterstitial.setAdUnitId(this.rewardedInterstitialAdUnit);
 			rewardedInterstitial.setRewardedVideoAdListener(new MyRewardedInterstitialListener());	
