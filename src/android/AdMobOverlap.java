@@ -585,7 +585,7 @@ public class AdMobOverlap implements PluginDelegate {
 			Log.d(LOG_TAG, String.format("%s", "onRewardedVideoAdLoaded"));
 		  
     		if(rewardedInterstitialAdPreload) {
-    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdPreloaded");
+    			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedInterstitialAdPreloaded");
     			pr.setKeepCallback(true);
     			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -593,7 +593,7 @@ public class AdMobOverlap implements PluginDelegate {
     			//plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		}
     		
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdLoaded");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedInterstitialAdLoaded");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -614,7 +614,7 @@ public class AdMobOverlap implements PluginDelegate {
 		public void onRewardedVideoStarted() {
 			Log.d(LOG_TAG, String.format("%s", "onRewardedVideoStarted"));
 		  
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdShown");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedInterstitialAdShown");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -626,7 +626,7 @@ public class AdMobOverlap implements PluginDelegate {
 		public void onRewardedVideoAdClosed() {
 			Log.d(LOG_TAG, String.format("%s", "onRewardedVideoAdClosed"));
 		  
-    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdHidden");
+    		PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedInterstitialAdHidden");
     		pr.setKeepCallback(true);
     		plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
     		//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);
@@ -649,7 +649,7 @@ public class AdMobOverlap implements PluginDelegate {
               obj, ADTYPE_REWARDVIDEO, EVENT_AD_PRESENT, reward.getType(), reward.getAmount());
 */			  
 		  
-			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedVideoAdCompleted");
+			PluginResult pr = new PluginResult(PluginResult.Status.OK, "onRewardedInterstitialAdCompleted");
 			pr.setKeepCallback(true);
 			plugin.getCallbackContextKeepCallback().sendPluginResult(pr);
 			//PluginResult pr = new PluginResult(PluginResult.Status.ERROR);

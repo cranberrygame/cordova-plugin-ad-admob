@@ -208,10 +208,11 @@ public class AdMobPlugin extends CordovaPlugin implements PluginDelegate, Plugin
 		final String bannerAdUnit = args.getString(0);
 		final String interstitialAdUnit = args.getString(1);				
 		final String rewardedInterstitialAdUnit = args.getString(2);				
-		final boolean isOverlap = args.getBoolean(2);				
-		final boolean isTest = args.getBoolean(3);				
+		final boolean isOverlap = args.getBoolean(3);				
+		final boolean isTest = args.getBoolean(4);				
 		Log.d(LOG_TAG, String.format("%s", bannerAdUnit));			
 		Log.d(LOG_TAG, String.format("%s", interstitialAdUnit));
+		Log.d(LOG_TAG, String.format("%s", rewardedInterstitialAdUnit));
 		Log.d(LOG_TAG, String.format("%b", isOverlap));
 		Log.d(LOG_TAG, String.format("%b", isTest));
 		
