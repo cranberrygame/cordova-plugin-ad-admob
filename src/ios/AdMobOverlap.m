@@ -79,7 +79,8 @@
 
 - (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedInterstitialAdUnit:(NSString *)rewardedInterstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	self.bannerAdUnit = bannerAdUnit;
-	self.interstitialAdUnit = interstitialAdUnit;
+    self.interstitialAdUnit = interstitialAdUnit;
+    self.rewardedInterstitialAdUnit = rewardedInterstitialAdUnit;
 	self.isOverlap = isOverlap;
 	self.isTest = isTest;	
 }
@@ -505,7 +506,7 @@
 	NSLog(@"rewardBasedVideoAdDidReceiveAd");
 
 	if(rewardedInterstitialAdPreload) {
-		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdPreloaded"];
+		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdPreloaded"];
 		[pr setKeepCallbackAsBool:YES];
 		[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 		//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -513,7 +514,7 @@
 		//[self.commandDelegate sendPluginResult:pr callbackId:self.callbackIdKeepCallback];			
 	}
 	
-	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdLoaded"];
+	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdLoaded"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -535,23 +536,23 @@
 
 - (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidOpen");
+    
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdShown"];
+    [pr setKeepCallbackAsBool:YES];
+    [[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
+    //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+    //[pr setKeepCallbackAsBool:YES];
+    //[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 }
 
 - (void)rewardBasedVideoAdDidStartPlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidStartPlaying");
-
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdShown"];
-	[pr setKeepCallbackAsBool:YES];
-	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
-    //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
-	//[pr setKeepCallbackAsBool:YES];
-	//[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 }
 
 - (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidClose");
 
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdHidden"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdHidden"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -569,7 +570,7 @@
     [self fireEvent:obj event:EVENT_AD_PRESENT withData:json];
 */
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdCompleted"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdCompleted"];
     [pr setKeepCallbackAsBool:YES];
     [[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];

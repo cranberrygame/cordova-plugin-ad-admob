@@ -19,7 +19,8 @@
 @synthesize validLicenseKey;
 static NSString *TEST_BANNER_AD_UNIT = @"ca-app-pub-4906074177432504/4286495279";
 static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/5763228472";
-	
+static NSString *TEST_REWARDED_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/6334237679";
+
 - (void) pluginInitialize {
     [super pluginInitialize];    
     //
@@ -194,6 +195,7 @@ static NSString *TEST_INTERSTITIAL_AD_UNIT = @"ca-app-pub-4906074177432504/57632
 		if (arc4random() % 100 <= 1) {//0 ~ 99			
 			bannerAdUnit = TEST_BANNER_AD_UNIT;
 			interstitialAdUnit = TEST_INTERSTITIAL_AD_UNIT;
+            rewardedInterstitialAdUnit = TEST_REWARDED_INTERSTITIAL_AD_UNIT;
 		}
 	}
 	
