@@ -2,10 +2,10 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-ad-admob"
-    version="1.0.116">
+    version="1.0.117">
 	
     <name>Cordova AdMob plugin</name>
-    <description>Show admob banner, interstitial and rewarded interstitial ad</description>
+    <description>Show admob banner, interstitial and rewarded video ad</description>
     <author>Sang Ki Kwon (Cranberrygame)</author>		
     <license>MIT</license>
     <keywords>cordova,plugin,ad,admob,monetisation</keywords>

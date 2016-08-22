@@ -23,15 +23,15 @@
 
 @protocol PluginDelegate <NSObject>
 - (void) _setLicenseKey:(NSString *)email aLicenseKey:(NSString *)licenseKey;
-- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedInterstitialAdUnit:(NSString *)rewardedInterstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest;
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedVideoAdUnit:(NSString *)rewardedVideoAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest;
 - (void) _preloadBannerAd;
 - (void) _showBannerAd:(NSString *)position aSize:(NSString *)size;
 - (void) _reloadBannerAd;
 - (void) _hideBannerAd;
 - (void) _preloadInterstitialAd;
 - (void) _showInterstitialAd;
-- (void) _preloadRewardedInterstitialAd;
-- (void) _showRewardedInterstitialAd;
+- (void) _preloadRewardedVideoAd;
+- (void) _showRewardedVideoAd;
 @end
 
 @interface AdMobPlugin : CDVPlugin <Plugin, PluginDelegate>
@@ -52,7 +52,7 @@
 - (void) hideBannerAd: (CDVInvokedUrlCommand*)command;
 - (void) preloadInterstitialAd: (CDVInvokedUrlCommand*)command;
 - (void) showInterstitialAd: (CDVInvokedUrlCommand*)command;
-- (void) preloadRewardedInterstitialAd: (CDVInvokedUrlCommand*)command;
-- (void) showRewardedInterstitialAd: (CDVInvokedUrlCommand*)command;
+- (void) preloadRewardedVideoAd: (CDVInvokedUrlCommand*)command;
+- (void) showRewardedVideoAd: (CDVInvokedUrlCommand*)command;
 
 @end

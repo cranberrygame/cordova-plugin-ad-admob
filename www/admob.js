@@ -2,10 +2,10 @@
 module.exports = {
 	_loadedBannerAd: false,
 	_loadedInterstitialAd: false,
-	_loadedRewardedInterstitialAd: false,	
+	_loadedRewardedVideoAd: false,	
 	_isShowingBannerAd: false,
 	_isShowingInterstitialAd: false,
-	_isShowingRewardedInterstitialAd: false,	
+	_isShowingRewardedVideoAd: false,	
 	_fixCocoonIOCordovaAndroidAdMobIssue: false,
 	//
 	setLicenseKey: function(email, licenseKey) {
@@ -18,9 +18,9 @@ module.exports = {
             [email, licenseKey]
         ); 
     },
-	setUp: function(bannerAdUnit, interstitialAdUnit, rewardedInterstitialAdUnit, isOverlap, isTest) {
+	setUp: function(bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest) {
         if (typeof isTest == 'undefined') {
-            isOverlap=rewardedInterstitialAdUnit;
+            isOverlap=rewardedVideoAdUnit;
             isTest=isOverlap;
         }
         
@@ -100,32 +100,32 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 							self.onInterstitialAdHidden();
 					}
 					//
-					else if (event == "onRewardedInterstitialAdPreloaded") {
-						if (self.onRewardedInterstitialAdPreloaded)
-							self.onRewardedInterstitialAdPreloaded();
+					else if (event == "onRewardedVideoAdPreloaded") {
+						if (self.onRewardedVideoAdPreloaded)
+							self.onRewardedVideoAdPreloaded();
 					}
-					else if (event == "onRewardedInterstitialAdLoaded") {
-						self._loadedRewardedInterstitialAd = true;
+					else if (event == "onRewardedVideoAdLoaded") {
+						self._loadedRewardedVideoAd = true;
 
-						if (self.onRewardedInterstitialAdLoaded)
-							self.onRewardedInterstitialAdLoaded();
+						if (self.onRewardedVideoAdLoaded)
+							self.onRewardedVideoAdLoaded();
 					}
-					else if (event == "onRewardedInterstitialAdShown") {
-						self._loadedRewardedInterstitialAd = false;
-						self._isShowingRewardedInterstitialAd = true;
+					else if (event == "onRewardedVideoAdShown") {
+						self._loadedRewardedVideoAd = false;
+						self._isShowingRewardedVideoAd = true;
 					
-						if (self.onRewardedInterstitialAdShown)
-							self.onRewardedInterstitialAdShown();
+						if (self.onRewardedVideoAdShown)
+							self.onRewardedVideoAdShown();
 					}
-					else if (event == "onRewardedInterstitialAdHidden") {
-						self._isShowingRewardedInterstitialAd = false;
+					else if (event == "onRewardedVideoAdHidden") {
+						self._isShowingRewardedVideoAd = false;
 					
-						 if (self.onRewardedInterstitialAdHidden)
-							self.onRewardedInterstitialAdHidden();
+						 if (self.onRewardedVideoAdHidden)
+							self.onRewardedVideoAdHidden();
 					}
-					else if (event == "onRewardedInterstitialAdCompleted") {
-						if (self.onRewardedInterstitialAdCompleted)
-							self.onRewardedInterstitialAdCompleted();
+					else if (event == "onRewardedVideoAdCompleted") {
+						if (self.onRewardedVideoAdCompleted)
+							self.onRewardedVideoAdCompleted();
 					}					
 				}
 				else {
@@ -141,7 +141,7 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 			},
             'AdMobPlugin',
             'setUp',			
-            [bannerAdUnit, interstitialAdUnit, rewardedInterstitialAdUnit, isOverlap, isTest]
+            [bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest]
         ); 
     },
 	preloadBannerAd: function() {
@@ -228,21 +228,21 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
         ); 
     },
 	//
-	preloadRewardedInterstitialAd: function() {
+	preloadRewardedVideoAd: function() {
         cordova.exec(
 			null,
             null,
             'AdMobPlugin',
-            'preloadRewardedInterstitialAd',
+            'preloadRewardedVideoAd',
             []
         ); 
     },
-    showRewardedInterstitialAd: function() {
+    showRewardedVideoAd: function() {
 		cordova.exec(
 			null,
             null,
             'AdMobPlugin',
-            'showRewardedInterstitialAd',
+            'showRewardedVideoAd',
             []
         ); 
     },	
@@ -257,8 +257,8 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	loadedInterstitialAd: function() {
 		return this._loadedInterstitialAd;
 	},
-	loadedRewardedInterstitialAd: function() {
-		return this._loadedRewardedInterstitialAd;
+	loadedRewardedVideoAd: function() {
+		return this._loadedRewardedVideoAd;
 	},	
 	isShowingBannerAd: function() {
 		return this._isShowingBannerAd;
@@ -271,8 +271,8 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	isShowingInterstitialAd: function() {
 		return this._isShowingInterstitialAd;
 	},
-	isShowingRewardedInterstitialAd: function() {
-		return this._isShowingRewardedInterstitialAd;
+	isShowingRewardedVideoAd: function() {
+		return this._isShowingRewardedVideoAd;
 	},	
 	onBannerAdPreloaded: null,
 	onBannerAdLoaded: null,
@@ -291,9 +291,9 @@ if (typeof Cocoon != 'undefined' && navigator.userAgent.match(/Android/i) && !se
 	onInterstitialAdShown: null,
 	onInterstitialAdHidden: null,
 	//
-	onRewardedInterstitialAdPreloaded: null,
-	onRewardedInterstitialAdLoaded: null,
-	onRewardedInterstitialAdShown: null,
-	onRewardedInterstitialAdHidden: null,
-	onRewardedInterstitialAdCompleted: null
+	onRewardedVideoAdPreloaded: null,
+	onRewardedVideoAdLoaded: null,
+	onRewardedVideoAdShown: null,
+	onRewardedVideoAdHidden: null,
+	onRewardedVideoAdCompleted: null
 };

@@ -21,11 +21,11 @@
 //
 @synthesize bannerAdPreload;	
 @synthesize interstitialAdPreload;
-@synthesize rewardedInterstitialAdPreload;
+@synthesize rewardedVideoAdPreload;
 //admob
 @synthesize bannerView;
 @synthesize interstitial;
-@synthesize rewardedInterstitial;
+@synthesize rewardedVideo;
 
 /*
 - (CDVPlugin *) initWithWebView:(UIWebView *)theWebView {
@@ -77,10 +77,10 @@
 - (void) _setLicenseKey:(NSString *)email aLicenseKey:(NSString *)licenseKey {
 }
 
-- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedInterstitialAdUnit:(NSString *)rewardedInterstitialAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
+- (void) _setUp:(NSString *)bannerAdUnit anInterstitialAdUnit:(NSString *)interstitialAdUnit aRewardedVideoAdUnit:(NSString *)rewardedVideoAdUnit anIsOverlap:(BOOL)isOverlap anIsTest:(BOOL)isTest {
 	self.bannerAdUnit = bannerAdUnit;
     self.interstitialAdUnit = interstitialAdUnit;
-    self.rewardedInterstitialAdUnit = rewardedInterstitialAdUnit;
+    self.rewardedVideoAdUnit = rewardedVideoAdUnit;
 	self.isOverlap = isOverlap;
 	self.isTest = isTest;	
 }
@@ -359,17 +359,17 @@
 }
 
 
-- (void) _preloadRewardedInterstitialAd {
-    rewardedInterstitialAdPreload = YES;
+- (void) _preloadRewardedVideoAd {
+    rewardedVideoAdPreload = YES;
     
-    [self loadRewardedInterstitialAd];
+    [self loadRewardedVideoAd];
 }
 
-- (void) loadRewardedInterstitialAd {
-    if (rewardedInterstitial == nil){
-        self.rewardedInterstitial = [GADRewardBasedVideoAd sharedInstance];
+- (void) loadRewardedVideoAd {
+    if (rewardedVideo == nil){
+        self.rewardedVideo = [GADRewardBasedVideoAd sharedInstance];
         //
-        self.rewardedInterstitial.delegate = self;
+        self.rewardedVideo.delegate = self;
     }	
 	
 	GADRequest *request = [GADRequest request];
@@ -381,17 +381,17 @@
         [self md5:adid.UUIDString],
         nil];
     }
-	[self.rewardedInterstitial loadRequest:request withAdUnitID:self.rewardedInterstitialAdUnit];
+	[self.rewardedVideo loadRequest:request withAdUnitID:self.rewardedVideoAdUnit];
 }
 
-- (void) _showRewardedInterstitialAd {
-    if(rewardedInterstitialAdPreload) {
-        rewardedInterstitialAdPreload = NO;
+- (void) _showRewardedVideoAd {
+    if(rewardedVideoAdPreload) {
+        rewardedVideoAdPreload = NO;
         
-        [rewardedInterstitial presentFromRootViewController:[plugin getViewController]];
+        [rewardedVideo presentFromRootViewController:[plugin getViewController]];
     }
     else {
-        [self loadRewardedInterstitialAd];
+        [self loadRewardedVideoAd];
     }
 }
 
@@ -505,8 +505,8 @@
 - (void)rewardBasedVideoAdDidReceiveAd:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidReceiveAd");
 
-	if(rewardedInterstitialAdPreload) {
-		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdPreloaded"];
+	if(rewardedVideoAdPreload) {
+		CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdPreloaded"];
 		[pr setKeepCallbackAsBool:YES];
 		[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 		//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -514,15 +514,15 @@
 		//[self.commandDelegate sendPluginResult:pr callbackId:self.callbackIdKeepCallback];			
 	}
 	
-	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdLoaded"];
+	CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdLoaded"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	//CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
 	//[pr setKeepCallbackAsBool:YES];
 	//[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
 	
-	if(!rewardedInterstitialAdPreload) {
-		[rewardedInterstitial presentFromRootViewController:[plugin getViewController]];
+	if(!rewardedVideoAdPreload) {
+		[rewardedVideo presentFromRootViewController:[plugin getViewController]];
 	}
 }
 
@@ -537,7 +537,7 @@
 - (void)rewardBasedVideoAdDidOpen:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidOpen");
     
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdShown"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdShown"];
     [pr setKeepCallbackAsBool:YES];
     [[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -552,7 +552,7 @@
 - (void)rewardBasedVideoAdDidClose:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
 	NSLog(@"rewardBasedVideoAdDidClose");
 
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdHidden"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdHidden"];
 	[pr setKeepCallbackAsBool:YES];
 	[[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
@@ -570,7 +570,7 @@
     [self fireEvent:obj event:EVENT_AD_PRESENT withData:json];
 */
 	
-    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedInterstitialAdCompleted"];
+    CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"onRewardedVideoAdCompleted"];
     [pr setKeepCallbackAsBool:YES];
     [[self.plugin getCommandDelegate] sendPluginResult:pr callbackId:[self.plugin getCallbackIdKeepCallback]];
     //CDVPluginResult* pr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
