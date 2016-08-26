@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ad-admob",
-  "version": "1.0.117",
+  "version": "1.0.118",
   "description": "Show admob banner, interstitial and rewarded video ad",
   "cordova": {
     "id": "cordova-plugin-ad-admob",

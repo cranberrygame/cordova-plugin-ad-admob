@@ -20,8 +20,14 @@ module.exports = {
     },
 	setUp: function(bannerAdUnit, interstitialAdUnit, rewardedVideoAdUnit, isOverlap, isTest) {
         if (typeof isTest == 'undefined') {
-            isOverlap=rewardedVideoAdUnit;
-            isTest=isOverlap;
+            //isOverlap=rewardedVideoAdUnit;
+            //isTest=isOverlap;
+			rewardedVideoAdUnit_=rewardedVideoAdUnit;
+			isOverlap_=isOverlap;
+			isTest_=isTest;
+			//
+			isOverlap=rewardedVideoAdUnit_;
+            isTest=isOverlap_;			
         }
         
 		var self = this;
