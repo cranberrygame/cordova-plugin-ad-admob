@@ -275,7 +275,7 @@ The step to use admob mediation networks is following:<br>
 ## ios submit for review survey ##
 <img src="https://raw.githubusercontent.com/cranberrygame/cordova-plugin-ad-admob/master/doc/ios_submit_for_review_survey.png">
 # API #
-```javascript
+<code>
 var bannerAdUnit = "REPLACE_THIS_WITH_YOUR_BANNER_AD_UNIT";
 var interstitialAdUnit = "REPLACE_THIS_WITH_YOUR_INTERSTITIAL_AD_UNIT";
 var rewardedVideoAdUnit = "REPLACE_THIS_WITH_YOUR_REWARDED_VIDEO_AD_UNIT";
@@ -386,7 +386,7 @@ alert(window.admob.loadedRewardedVideoAd());//boolean: true or false
 alert(window.admob.isShowingBannerAd());//boolean: true or false
 alert(window.admob.isShowingInterstitialAd());//boolean: true or false
 alert(window.admob.isShowingRewardedVideoAd());//boolean: true or false
-```
+</code>
 # Examples #
 <a href="https://github.com/cranberrygame/cordova-plugin-ad-admob/blob/master/example/basic/index.html">example/basic/index.html</a><br>
 <a href="https://github.com/cranberrygame/cordova-plugin-ad-admob/blob/master/example/advanced/index.html">example/advanced/index.html</a><br>
